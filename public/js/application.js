@@ -1,35 +1,56 @@
 
 
-// var geocoder;
-// var map;
-
-function initialize() {
-    var geocoder = new google.maps.Geocoder();
+var geocoder;
+  var map;
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
     var mapOptions = {
-      center: new google.maps.LatLng(34.397, -122.644),
       zoom: 8,
-      mapTypeId: google.maps.MapTypeId.SATELLITE
-    };
-    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-      infowindow = new google.maps.InfoWindow({ maxWidth: 320 
-    }); 
-    var markerOptions = {
-      position: new google.maps.LatLng(37.7831, -122.4039)
-    };
-    var marker = new google.maps.Marker(markerOptions);
-    marker.setMap(map);
-    
-      var infoWindowOptions ={
-     content: "hey"
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
     }
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+  }
 
-    var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-    google.maps.event.addListener(marker,'click',function(e){
-      infoWindow.open(map,marker);
+  function codeAddress() {
+    var address = document.getElementById('zip').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        console.log(results)
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+        marker.setMap(map);
+        var infoWindowOptions = {
+          content:'moscov'
+        };
+        var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+
+        console.log(marker);
+
+        google.maps.event.addListener(marker,'click', function(e){ 
+          infoWindow.open(map,marker);  
+        });
+     fuction 
+
+
+        
+          
+   
+     
+
+
+
+          
+
+
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
     });
-    
-
-
   }
 
 
@@ -38,21 +59,7 @@ function initialize() {
 
 
 
-      google.maps.event.addDomListener(window, 'load', initialize);
 
-function codeAddress() {
-  var address = document.getElementById('zip').value;
-  console.log(address)
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-    console.log(results[0].geometry.location);
-    console.log(map);
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-}
 
 
 
@@ -60,9 +67,12 @@ function codeAddress() {
 
 
 $(document).ready(function() {
-     
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+     console.log(geocoder)
   //   loadScript();
   $('#zip_srch').on('click', function(){
+
     codeAddress();
   })
   // This is called after the document has loaded in its entirety

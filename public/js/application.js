@@ -11,7 +11,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
   function initialize() {
     geocoder = new google.maps.Geocoder();
-    var latlng = new google.maps.LatLng(41.397, -86.644);
+    var latlng = new google.maps.LatLng(37.397, -122.644);
     var mapOptions = {
       zoom: 8,
       center: latlng,
@@ -50,7 +50,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     function fetch(){
         var lng = map.getCenter().lng()
         var lat = map.getCenter().lat()
-        
+
         $.post('/twitter',{lng:lng,lat:lat},function(){
 
         })

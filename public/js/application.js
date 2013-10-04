@@ -20,6 +20,21 @@ google.maps.event.addDomListener(window, 'load', initialize);
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
   }
 
+function setMarker(lat, lon, details) {
+  var latLng = new google.maps.LatLng(lat, lon);
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map,
+    data: html
+  });
+  
+  google.maps.event.addListener(marker, 'click', function() { 
+    map.setCenter(new google.maps.LatLng(marker.position.lat(), marker.position.lng())); 
+    map.setZoom(16); 
+    onItemClick(event, marker); 
+  }); 
+}
+
 
   function codeAddress() {
     var address = document.getElementById('zip').value;
@@ -47,11 +62,21 @@ google.maps.event.addDomListener(window, 'load', initialize);
     });
   }
 
+
+
+
     function fetch(){
         var lng = map.getCenter().lng()
         var lat = map.getCenter().lat()
+        var phrase = document.getElementById('phrase').value;
+     
+        $.post('/twitter',{lng:lng,lat:lat,phrase:phrase},function(response){
+          jQuery.each(response,function(i,val){
+            console.log(val)
+          }); 
+         
 
-        $.post('/twitter',{lng:lng,lat:lat},function(){
+
 
         })
     }

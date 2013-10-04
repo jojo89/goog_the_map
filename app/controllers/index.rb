@@ -4,10 +4,32 @@ get '/' do
 end
 
 post '/twitter' do 
-   latitude = params[:lat]
-   longitude = params[:lng]
-   p post = latitude.to_s + ',' + longitude.to_s + ',6mi'
+  phrase = params[:phrase]
+  latitude = params[:lat]
+  longitude = params[:lng]
+  post = latitude.to_s + ',' + longitude.to_s + ',80km' 
 
-   p @tweets = Twitter.search(post)
    
+  @tweet = Twitter.search(phrase, :geocode => post, :result_type => "recent")
+
+  @tweets =  @tweet.to_hash[:statuses]
+    
+
+  tolocation={}
+  tocoor={}
+  @tweets.each_with_index do |r,i|
+    if r[:coordinates].nil? || r[:geo].nil?
+      tolocation[i] = {user: r[:user][:screen_name], status: r[:text],location:r[:user][:location]}
+    elsif
+      tocoor[i] = {user: r[:user][:screen_name], status: r[:text],lat: r[:coordinates][:coordinates][1],long: r[:coordinates][:coordinates][0]}
+    end
+  end  
+  p tolocation
+  tojava = {location: tolocation, coordinates: tocoor} 
+
+  
+content_type :json
+tojava.to_json
 end  
+
+

@@ -45,17 +45,17 @@ function setMarker(lat, lon, details) {
         map.setCenter(results[0].geometry.location);
         console.log(map.getCenter().lng());
         console.log(map.getCenter().lat());
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-        var infoWindowOptions = {
-          content:'moscov'
-        };
-        var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-        google.maps.event.addListener(marker,'click', function(e){ 
-          infoWindow.open(map,marker);  
-        });
+        // var marker = new google.maps.Marker({
+        //     map: map,
+        //     position: results[0].geometry.location
+        // });
+        // var infoWindowOptions = {
+        //   content:'moscov'
+        // };
+        // var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+        // google.maps.event.addListener(marker,'click', function(e){ 
+        //   infoWindow.open(map,marker);  
+        // });
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
@@ -71,8 +71,23 @@ function setMarker(lat, lon, details) {
         var phrase = document.getElementById('phrase').value;
      
         $.post('/twitter',{lng:lng,lat:lat,phrase:phrase},function(response){
+          console.log(response)
           jQuery.each(response,function(i,val){
-            console.log(val)
+            console.log(val.user)
+            console.log(val.lat)
+            console.log(val.lng)
+            var marker = new google.maps.Marker({
+                map: map,
+                position: new google.maps.LatLng(val.lat, val.lng),
+            });
+            var infoWindowOptions = {
+              content: val.status
+            };
+            var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+            google.maps.event.addListener(marker,'click', function(e){ 
+              infoWindow.open(map,marker);  
+            });            
+          
           }); 
          
 

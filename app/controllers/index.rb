@@ -7,25 +7,24 @@ post '/twitter' do
   phrase = params[:phrase]
   latitude = params[:lat]
   longitude = params[:lng]
-  post = latitude.to_s + ',' + longitude.to_s + ',80km' 
+  post = latitude.to_s + ',' + longitude.to_s + ',23km' 
 
    
-  @tweet = Twitter.search(phrase, :geocode => post, :result_type => "recent")
-
+  @tweet = Twitter.search(phrase, :count => 100, :geocode => post,  :result_type => "recent")
+  
   @tweets =  @tweet.to_hash[:statuses]
-    
 
-  tolocation={}
+  p @tweets.length  
+
+
   tocoor={}
   @tweets.each_with_index do |r,i|
-    if r[:coordinates].nil? || r[:geo].nil?
-      tolocation[i] = {user: r[:user][:screen_name], status: r[:text],location:r[:user][:location]}
-    elsif
-      tocoor[i] = {user: r[:user][:screen_name], status: r[:text],lat: r[:coordinates][:coordinates][1],long: r[:coordinates][:coordinates][0]}
+    if r[:coordinates] || r[:geo]    
+      tocoor[i] = {user: r[:user][:screen_name], status: r[:text],lat: r[:coordinates][:coordinates][1],lng: r[:coordinates][:coordinates][0],pic: r[:user][:profile_image_url]}
     end
   end  
-  p tolocation
-  tojava = {location: tolocation, coordinates: tocoor} 
+    tocoor
+  tojava = tocoor
 
   
 content_type :json

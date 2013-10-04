@@ -20,7 +20,7 @@ post '/twitter' do
   tocoor={}
   @tweets.each_with_index do |r,i|
     if r[:coordinates] || r[:geo]    
-      tocoor[i] = {user: r[:user][:screen_name], status: r[:text],lat: r[:coordinates][:coordinates][1],lng: r[:coordinates][:coordinates][0],pic: r[:user][:profile_image_url]}
+      tocoor[i] = {user: r[:user][:screen_name], status: r[:text],lat: r[:coordinates][:coordinates][1],lng: r[:coordinates][:coordinates][0],pic: r[:user][:profile_image_url], bg:r[:user][:profile_background_image_url]}
     end
   end  
     tocoor

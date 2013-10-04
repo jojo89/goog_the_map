@@ -81,11 +81,12 @@ function setMarker(lat, lon, details) {
                 position: new google.maps.LatLng(val.lat, val.lng),
             });
             var infoWindowOptions = {
-              content: val.status
+              content: '<img src='+ val.pic+ '><br>' + val.status
             };
             var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
             google.maps.event.addListener(marker,'click', function(e){ 
               infoWindow.open(map,marker);  
+              $('body').css('background-image', 'url('+ val.bg +')')
             });            
           
           }); 

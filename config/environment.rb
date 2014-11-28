@@ -10,8 +10,7 @@ require 'rubygems'
 
 require 'uri'
 require 'pathname'
-
-require 'pg'
+require 'yaml'
 require 'active_record'
 require 'logger'
 require 'twitter'
@@ -33,18 +32,17 @@ env_config.each do |key, value|
   ENV[key] = value
 end
 
-Twitter.configure do |config|
-  config.consumer_key = ENV['TWITTER_SECRET']
-  config.consumer_secret = ENV['TWITTER_KEY']
-  config.oauth_token = ENV['TWITTER_OAUTH_TOKEN']
-  config.oauth_token_secret = ENV['TWITTER_OAUTH_SECRET']
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = ENV['TWITTER_SECRET']
+  config.consumer_secret     = ENV['TWITTER_KEY']
+  config.access_token        = ENV['TWITTER_OAUTH_TOKEN']
+  config.access_token_secret = ENV['TWITTER_OAUTH_SECRET']
 end
-
 
 
 # Set up the controllers and helpers
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
+Dir[APP_ROOT.join('app', 'models', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
-require APP_ROOT.join('config', 'database')

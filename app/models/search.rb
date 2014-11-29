@@ -7,6 +7,10 @@ class Search
   end
   
   def query_twitter
-    Twitter.search(phrase, :count => 100, :geocode => location.twitter_location,  :result_type => "recent")
+    CLIENT.search(phrase, :count => 100, :geocode => location.twitter_location,  :result_type => "recent")
+  end
+  
+  def tweets
+    query_twitter.to_hash[:statuses]
   end
 end

@@ -62,12 +62,9 @@ function setMarker(lat, lon, details) {
         $.post('/twitter',{lng:lng,lat:lat,phrase:phrase},function(response){
           console.log(response)
           jQuery.each(response,function(i,val){
-            console.log(val.user)
-            console.log(val.lat)
-            console.log(val.lng)
             var marker = new google.maps.Marker({
                 map: map,
-                position: new google.maps.LatLng(val.lat, val.lng),
+                position: new google.maps.LatLng(val.latitude, val.longitude),
             });
             var infoWindowOptions = {
               content: '<img src='+ val.pic+ '><br>' + val.status

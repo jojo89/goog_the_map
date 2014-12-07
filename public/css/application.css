@@ -1,7 +1,7 @@
 body 
 {
   text-align: center;
-  background: rgb(255, 204, 71);
+  background: rgb(255, 225, 104);
   color: white;
   font-family: 'Maven Pro', sans-serif;
 }
@@ -49,6 +49,12 @@ input
 
 .button
 {
+  background: rgb(33, 215, 215);
+}
+
+.content
+{
+  color: black;
   background: rgb(33, 215, 215);
 }
 

@@ -4,7 +4,7 @@ var Spot = function (latitude, longitude, profile_image, text, background) {
   this.background = background;
 }
 
-Spot.prototype.openBox = function() {
+Spot.prototype.flashBox = function() {
   this.infoBox.open(map, this.marker);
   this.changeBackground()
   this.popBox()
@@ -22,7 +22,7 @@ Spot.prototype.popBox = function() {
   var _this = this;
   window.setTimeout(function(){
     _this.closeBox()
-  }, 2000);
+  }, 10000);
 }
 
 Spot.prototype.makeMarker = function(latitude, longitude, profile_image){

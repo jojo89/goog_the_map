@@ -9,9 +9,8 @@ Fetcher.prototype.fetch = function() {
     jQuery.each(response,function(i,val){
       var spot = new Spot(val.latitude, val.longitude, val.profile_image, val.text, val.background_image)
       google.maps.event.addListener(spot.marker,'click', function(e){
-        spot.flashBox()
+        spot.flashBox();
       });      
     }); 
   })
 }
-

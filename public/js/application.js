@@ -42,7 +42,7 @@ $(document).ready(function() {
     codeAddress(address);
   });
   $('#find_tweets').on('click',function(){
-     fetch(map); 
+     map.fetch(); 
   });
 });
 

@@ -13,5 +13,12 @@ Map.prototype.makeMap = function(latlng) {
 };
 
 Map.prototype.setMap = function(latlng) {
-  return this.map
+  return this
+};
+
+Map.prototype.fetch = function() {
+  var lng = this.map.getCenter().lng();
+  var lat = this.map.getCenter().lat();
+  var phrase = document.getElementById('phrase').value;
+  new Fetcher(lat, lng, phrase, this.map).fetch();
 };

@@ -29,13 +29,26 @@ h1
 
 #map-canvas
 {
+  float: right;
   margin: 20px auto;
+  width: 50%;
+  height: 600px;
   border: 6px solid rgb(33, 215, 215);
   border-radius: 72px;
-  margin: 20px auto;
+  margin: 20px 10px;
 }
 
-
+#profile
+{
+  width: 44%;
+  height: 500px;
+  float: left;
+  border: 6px solid rgb(33, 215, 215);
+  border-radius: 72px;
+  margin-top: 20px;
+  margin-left: 0px;
+  height: 430px;
+}
 
 input
 {
@@ -45,6 +58,27 @@ input
   margin-left: auto;
   margin-right: auto;
   width: 250px;
+}
+
+.profile-pic
+{
+  width: 205px;
+  height: auto;
+  margin-top: 16px;
+  margin-left: -43px;
+  border: 6px solid rgb(33, 215, 215);
+  border-radius: 19px;
+}
+
+.tweet
+{
+  margin-top: 54px;
+  margin-right: 19px;
+  margin-left: 13px;
+  border-radius: 23px;
+  padding: 2px;
+  font-size: 33px;
+  border: 6px solid rgb(33, 215, 215);
 }
 
 .button
@@ -58,6 +92,23 @@ input
   background: rgb(33, 215, 215);
 }
 
+.display
+{
+  width: 1000px;
+  margin: auto;
+  height: 500px;
+}
+
+.screenname
+{
+  float: right;
+  margin-right: -17px;
+  color: white;
+  margin-top: 60px;
+  background: rgb(255, 120, 144);
+  padding: 13px 49px;
+  font-size: 38px;
+}
 
 input, label
 {
@@ -73,3 +124,4 @@ th
 {
   text-align: left;
 }
+

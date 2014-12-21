@@ -20,5 +20,6 @@ Map.prototype.fetch = function() {
   var lng = this.map.getCenter().lng();
   var lat = this.map.getCenter().lat();
   var phrase = document.getElementById('phrase').value;
-  new Fetcher(lat, lng, phrase, this.map).fetch();
+  googleMap = this.map
+  new Fetcher(lat, lng, phrase).fetch();
 };

@@ -1,12 +1,11 @@
-var Spot = function (latitude, longitude, profile_image, text, background, map) {
-  this.marker = this.makeMarker(latitude, longitude, profile_image, map.map);
+var Spot = function (latitude, longitude, profile_image, text, background) {
+  this.marker = this.makeMarker(latitude, longitude, profile_image);
   this.infoBox = this.makeBox(text);
   this.background = background;
-  this.map = map.map;
 }
 
 Spot.prototype.openBox = function() {
-  this.infoBox.open(this.map, this.marker);
+  this.infoBox.open(googleMap, this.marker);
 };
 
 Spot.prototype.flashBox = function() {
@@ -30,9 +29,9 @@ Spot.prototype.popBox = function() {
   }, 10000);
 }
 
-Spot.prototype.makeMarker = function(latitude, longitude, profile_image, map){
+Spot.prototype.makeMarker = function(latitude, longitude, profile_image){
   return new google.maps.Marker({
-      map: map,
+      map: googleMap,
       icon: profile_image,
       position: new google.maps.LatLng(latitude, longitude),
       visible: true

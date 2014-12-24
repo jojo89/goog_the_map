@@ -1,7 +1,6 @@
-var Spot = function (latitude, longitude, profile_image, text, background) {
+var Spot = function (latitude, longitude, profile_image, text) {
   this.marker = this.makeMarker(latitude, longitude, profile_image);
   this.infoBox = this.makeBox(text);
-  this.background = background;
 }
 
 Spot.prototype.openBox = function() {
@@ -10,13 +9,8 @@ Spot.prototype.openBox = function() {
 
 Spot.prototype.flashBox = function() {
   this.openBox()
-  this.changeBackground()
   this.popBox()
 };
-
-Spot.prototype.changeBackground = function() {
-  $('body').css('background-image', 'url('+ this.background +')')
-}
 
 Spot.prototype.closeBox = function() {
   this.infoBox.close()

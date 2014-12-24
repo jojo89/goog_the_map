@@ -41,13 +41,18 @@ h1
 #profile
 {
   width: 44%;
-  height: 500px;
   float: left;
+  background-image: url("https://pbs.twimg.com/profile_banners/1157570274/1361054817/1500x500");
   border: 6px solid rgb(33, 215, 215);
   border-radius: 72px;
   margin-top: 20px;
   margin-left: 0px;
   height: 430px;
+}
+
+div#expose {
+float: right;
+margin-right: 99px;
 }
 
 input
@@ -76,8 +81,9 @@ input
   margin-right: 19px;
   margin-left: 13px;
   border-radius: 23px;
+  background: rgba(0, 0, 0, 0.6);
   padding: 2px;
-  font-size: 33px;
+  font-size: 19px;
   border: 6px solid rgb(33, 215, 215);
 }
 
@@ -101,13 +107,15 @@ input
 
 .screenname
 {
+  border-radius: 6px;
   float: right;
-  margin-right: -17px;
+  height: 55px;
+  width: 203px;
   color: white;
   margin-top: 60px;
   background: rgb(255, 120, 144);
-  padding: 13px 49px;
-  font-size: 38px;
+  font-size: 28px;
+  padding-top: 18px;
 }
 
 input, label

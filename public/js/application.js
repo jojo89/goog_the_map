@@ -35,10 +35,10 @@ $(document).ready(function() {
     codeAddress(address);
   });
   $('#find_tweets').on('click',function(){
-     map.fetch(); 
+    map.fetch(); 
   });
   $('#clear-tweet').on('click',function(){
-     map.fetcher.killCollection(); 
+     map.clearMap()
   });
 });
 

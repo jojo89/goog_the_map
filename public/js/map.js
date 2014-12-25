@@ -13,7 +13,11 @@ Map.prototype.makeMap = function(latlng) {
 };
 
 Map.prototype.setMap = function(latlng) {
-  return this
+  return this;
+};
+
+Map.prototype.clearMap = function(latlng) {
+  this.fetcher.killCollection();
 };
 
 Map.prototype.fetch = function() {
@@ -22,7 +26,7 @@ Map.prototype.fetch = function() {
   var phrase = document.getElementById('phrase').value;
   googleMap = this.map
   if(typeof this.fetcher !== 'undefined'){
-    this.fetcher.killCollection()
+    this.clearMap()
   }
   this.fetcher = new Fetcher(lat, lng, phrase)
   this.fetcher.fetch();

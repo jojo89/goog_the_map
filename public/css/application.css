@@ -37,6 +37,18 @@ h1
   border-radius: 72px;
   margin: 20px 10px;
 }
+#clear-tweet
+{
+  margin: 234px 414px;
+  width: 89px;
+  border: 6px solid rgb(33, 215, 215);
+  border-radius: 72px;
+  height: 89px;
+  color: black;
+  background: rgb(255, 255, 255);
+  z-index: 99;
+  position: absolute;
+}
 
 #profile
 {

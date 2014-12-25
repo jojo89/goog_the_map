@@ -29,13 +29,6 @@ function codeAddress(address) {
   });
 }
 
-function fetch(map){
-  var lng = map.getCenter().lng();
-  var lat = map.getCenter().lat();
-  var phrase = document.getElementById('phrase').value;
-  new Fetcher(lat, lng, phrase).fetch();
-}
-
 $(document).ready(function() {  
   $('#zip_srch').on('click',function(){
     var address = document.getElementById('zip').value;
@@ -43,6 +36,9 @@ $(document).ready(function() {
   });
   $('#find_tweets').on('click',function(){
      map.fetch(); 
+  });
+  $('#clear-tweet').on('click',function(){
+     map.fetcher.killCollection(); 
   });
 });
 

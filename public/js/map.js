@@ -21,5 +21,9 @@ Map.prototype.fetch = function() {
   var lat = this.map.getCenter().lat();
   var phrase = document.getElementById('phrase').value;
   googleMap = this.map
-  new Fetcher(lat, lng, phrase).fetch();
+  if(typeof this.fetcher !== 'undefined'){
+    this.fetcher.killCollection()
+  }
+  this.fetcher = new Fetcher(lat, lng, phrase)
+  this.fetcher.fetch();
 };

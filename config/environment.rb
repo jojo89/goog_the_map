@@ -14,7 +14,7 @@ require 'yaml'
 require 'active_record'
 require 'logger'
 require 'twitter'
-
+require 'mongo'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
@@ -26,17 +26,17 @@ APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
 
 env_config = YAML.load_file(APP_ROOT.join('config', 'tokens.yaml'))
-
+include Mongo
 
 env_config.each do |key, value|
   ENV[key] = value
 end
 
 CLIENT = Twitter::REST::Client.new do |config|
-  config.consumer_key        = ENV['TWITTER_SECRET']
-  config.consumer_secret     = ENV['TWITTER_KEY']
-  config.access_token        = ENV['TWITTER_OAUTH_TOKEN']
-  config.access_token_secret = ENV['TWITTER_OAUTH_SECRET']
+  config.consumer_key        = 'aZC0XJqFLPH6RxWjoCnXDQ'
+  config.consumer_secret     = '4lOHesC12DG8zxpYWyqBaDLvgVC4hZziM7WVFt1crjw'
+  config.access_token        = '1157570274-6B0gWeLkDXAyEOEE8LtdWaDP3v1i6mcpN1eUqW3'
+  config.access_token_secret = 'gGFyPa0cvJhGTJK1kK6IaovswBY3Dd27QsujqpxLeE'
 end
 
 

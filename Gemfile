@@ -12,6 +12,9 @@ gem 'activesupport'
 gem 'activerecord'
 gem 'twitter'
 gem 'rake'
+gem 'mongo'
+gem 'bson_ext'
+gem 'mongo_mapper'
 
 gem 'shotgun'
 

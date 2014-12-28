@@ -80,9 +80,11 @@ input
 .profile-pic
 {
   width: 205px;
+  margin-right: -69px;
   height: auto;
+  margin-left: -62px;
+  max-height: 272px;
   margin-top: 16px;
-  margin-left: -43px;
   border: 6px solid rgb(33, 215, 215);
   border-radius: 19px;
 }
@@ -90,7 +92,6 @@ input
 .tweet
 {
   margin-top: 54px;
-  margin-right: 19px;
   margin-left: 13px;
   border-radius: 23px;
   background: rgba(0, 0, 0, 0.6);
@@ -121,13 +122,12 @@ input
 {
   border-radius: 6px;
   float: right;
-  height: 55px;
-  width: 203px;
   color: white;
   margin-top: 60px;
+  margin-right: -17px;
   background: rgb(255, 120, 144);
   font-size: 28px;
-  padding-top: 18px;
+  padding: 18px 16px;
 }
 
 input, label

@@ -4,6 +4,7 @@ class Search
   def initialize(location, phrase)
     @location = location
     @phrase = phrase
+    
   end
   
   def query_twitter
@@ -15,20 +16,14 @@ class Search
   end
   
   def tweets
-    tweet_hash = {}
-    twitter_tweets.each_with_index do |r,i|
-      if r[:coordinates] || r[:geo]    
-        tweet_hash[i] = Tweet.new(
-          r[:coordinates][:coordinates][1], 
-          r[:coordinates][:coordinates][0], 
-          r[:user][:screen_name], 
-          r[:text], 
-          r[:user][:profile_image_url], 
-          r[:user][:profile_background_image_url]          
+    tweets = twitter_tweets.map.with_index do |tweet, index|
+      if tweet[:coordinates] || tweet[:geo]    
+        Tweet.new( tweet[:coordinates][:coordinates][1], tweet[:coordinates][:coordinates][0], tweet[:user][:screen_name], 
+          tweet[:text], tweet[:user][:profile_image_url], tweet[:user][:profile_background_image_url], tweet[:retweet_count],
+          tweet[:favorite_count]
         ).to_json
-        
       end
     end
-    tweet_hash
+    tweets
   end 
 end

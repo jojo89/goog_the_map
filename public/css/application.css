@@ -73,8 +73,8 @@ h1
   height: 430px;
 }
 
-
-div#expose {
+div#expose 
+{
   float: right;
   margin-right: 66px;
 }

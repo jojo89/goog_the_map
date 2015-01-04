@@ -26,12 +26,23 @@ h1
   background: rgb(255, 120, 144);
   border-color: rgb(28, 224, 224);
 }
+#list
+{
+  width: 27%;
+  float: left;
+  border: 6px solid rgb(33, 215, 215);
+  background: rgb(255, 120, 144);
+  border-radius: 72px;
+  margin-top: 20px;
+  margin-left: 30px;
+  height: 430px;
+}
 
 #map-canvas
 {
   float: right;
   margin: 20px auto;
-  width: 50%;
+  width: 30%;
   height: 600px;
   border: 6px solid rgb(33, 215, 215);
   border-radius: 72px;
@@ -39,7 +50,7 @@ h1
 }
 #clear-tweet
 {
-  margin: 234px 414px;
+  margin: 234px 823px;
   width: 89px;
   border: 6px solid rgb(33, 215, 215);
   border-radius: 72px;
@@ -52,7 +63,7 @@ h1
 
 #profile
 {
-  width: 44%;
+  width: 35%;
   float: left;
   background-image: url("https://pbs.twimg.com/profile_banners/1157570274/1361054817/1500x500");
   border: 6px solid rgb(33, 215, 215);
@@ -62,9 +73,10 @@ h1
   height: 430px;
 }
 
+
 div#expose {
-float: right;
-margin-right: 99px;
+  float: right;
+  margin-right: 66px;
 }
 
 input
@@ -113,7 +125,7 @@ input
 
 .display
 {
-  width: 1000px;
+  width: 1300px;
   margin: auto;
   height: 500px;
 }
@@ -144,4 +156,5 @@ th
 {
   text-align: left;
 }
+
 

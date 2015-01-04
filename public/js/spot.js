@@ -1,5 +1,5 @@
-var Spot = function (latitude, longitude, profile_image, text) {
-  this.marker = this.makeMarker(latitude, longitude, profile_image);
+var Spot = function (latitude, longitude, profile_image, text, retweet_count) {
+  this.marker = this.makeMarker(latitude, longitude, profile_image, retweet_count);
   this.infoBox = this.makeBox(text);
 }
 
@@ -23,13 +23,27 @@ Spot.prototype.popBox = function() {
   }, 10000);
 }
 
-Spot.prototype.makeMarker = function(latitude, longitude, profile_image){
+Spot.prototype.makeMarker = function(latitude, longitude, profile_image, retweet_count){
   return new google.maps.Marker({
       map: googleMap,
-      icon: profile_image,
+    title: 'Map Icons',
+    zIndex: 9,
+      icon: this.isHot(profile_image, retweet_count),
       position: new google.maps.LatLng(latitude, longitude),
       visible: true
   });
+}
+
+Spot.prototype.hot = function(){
+  return "/images/1420351727_132117.ico"
+}
+
+Spot.prototype.isHot = function(profile_image, retweetCount){
+  if(retweetCount > 2){
+    return this.hot()
+  }else{
+    return profile_image;
+  }
 }
 
 Spot.prototype.makeBox = function(text){

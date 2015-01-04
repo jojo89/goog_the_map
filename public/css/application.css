@@ -13,7 +13,20 @@ h1
   color: #ffffff;
   font-style:italic;
   font-size: 51px;
-  font-family: 'Maven Pro', sans-serif; d
+  font-family: 'Maven Pro', sans-serif;
+}
+
+li
+{
+  text-align: left;
+  padding-top: 7px;
+}
+
+#list h1
+{
+  margin-top: 16px;
+  margin-bottom: 11px;
+  font-size: 40px;
 }
 
 .banner

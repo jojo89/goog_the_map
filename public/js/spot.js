@@ -1,4 +1,11 @@
-var Spot = function (latitude, longitude, profile_image, text, retweet_count) {
+var Spot = function (latitude, longitude, profile_image, text, retweet_count, user, background_image) {
+  this.latitude = latitude
+  this.longitude = longitude
+  this.profile_image = profile_image
+  this.text = text
+  this.retweet_count = retweet_count
+  this.user = user
+  this.background_image = background_image
   this.marker = this.makeMarker(latitude, longitude, profile_image, retweet_count);
   this.infoBox = this.makeBox(text);
 }
@@ -14,6 +21,29 @@ Spot.prototype.flashBox = function() {
 
 Spot.prototype.closeBox = function() {
   this.infoBox.close()
+}
+
+Spot.prototype.addToList = function(i) {
+  var spot = this
+  if ($('#list ol li')[i] != undefined){
+    $('#list ol li')[i].innerHTML = this.user + "- " + this.text.trunc(17) + "... " + this.retweet_count
+    $($('#list ol li')[i]).click(function() {
+      spot.flashBox()
+    });
+  }
+}
+
+Spot.prototype.featureProfile = function() {
+  var spot = this
+  google.maps.event.addListener(this.marker,'click', function(e){
+    $('#tweeter-page')[0].setAttribute("href", "https://twitter.com/" + spot.user)
+    $('#profile').css('background-image', 'url('+ spot.background_image +')')
+    $('.profile-pic')[0].setAttribute("src", spot.profile_image.replace("_normal", ""))
+    $('body').find('.screenname').text(spot.user)
+    $('body').find('.tweet p').text(spot.text)
+    spot.flashBox();
+  });      
+  
 }
 
 Spot.prototype.popBox = function() {

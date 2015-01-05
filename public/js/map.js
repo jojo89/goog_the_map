@@ -1,6 +1,6 @@
 var Map = function (startingLatitude, startingLongitude) {
   this.geocoder = new google.maps.Geocoder();
-  this.map = this.makeMap(new google.maps.LatLng(37.397, -122.644))
+  this.map = this.makeMap(new google.maps.LatLng(startingLatitude, startingLongitude))
 }
 
 Map.prototype.makeMap = function(latlng) {
@@ -18,6 +18,7 @@ Map.prototype.setMap = function(latlng) {
 
 Map.prototype.clearMap = function(latlng) {
   this.fetcher.killCollection();
+  this.fetcher.killFeatureSpot();
 };
 
 Map.prototype.fetch = function() {

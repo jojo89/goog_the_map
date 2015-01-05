@@ -23,27 +23,20 @@ Spot.prototype.closeBox = function() {
   this.infoBox.close()
 }
 
+Spot.prototype.displayProfile = function() {
+  $('#tweeter-page')[0].setAttribute("href", "https://twitter.com/" + this.user)
+  $('#profile').css('background-image', 'url('+ this.background_image +')')
+  $('.profile-pic')[0].setAttribute("src", this.profile_image.replace("_normal", ""))
+  $('body').find('.screenname').text(this.user)
+  $('body').find('.tweet p').text(this.text)
+  this.flashBox()
+}
+
 Spot.prototype.addToList = function(i) {
   var spot = this
   if ($('#list ol li')[i] != undefined){
-    $('#list ol li')[i].innerHTML = this.user + "- " + this.text.trunc(17) + "... " + this.retweet_count
-    $($('#list ol li')[i]).click(function() {
-      spot.flashBox()
-    });
+    $($('#list ol li')[i]).replaceWith("<li><a href='javascript:void(0)'>" + this.user + "- " + this.text.trunc(17) + "... " + this.retweet_count + "</a></li>")
   }
-}
-
-Spot.prototype.featureProfile = function() {
-  var spot = this
-  google.maps.event.addListener(this.marker,'click', function(e){
-    $('#tweeter-page')[0].setAttribute("href", "https://twitter.com/" + spot.user)
-    $('#profile').css('background-image', 'url('+ spot.background_image +')')
-    $('.profile-pic')[0].setAttribute("src", spot.profile_image.replace("_normal", ""))
-    $('body').find('.screenname').text(spot.user)
-    $('body').find('.tweet p').text(spot.text)
-    spot.flashBox();
-  });      
-  
 }
 
 Spot.prototype.popBox = function() {
@@ -56,8 +49,8 @@ Spot.prototype.popBox = function() {
 Spot.prototype.makeMarker = function(latitude, longitude, profile_image, retweet_count){
   return new google.maps.Marker({
       map: googleMap,
-    title: 'Map Icons',
-    zIndex: 9,
+      title: 'Map Icons',
+      zIndex: 9,
       icon: this.isHot(profile_image, retweet_count),
       position: new google.maps.LatLng(latitude, longitude),
       visible: true

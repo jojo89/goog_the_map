@@ -1,7 +1,7 @@
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function initialize() {
-  map = new Map(37.397, -122.644).setMap();
+  map = new Map(34.397, -118.644).setMap();
 }
 
 function setMarker(lat, lon, details) {

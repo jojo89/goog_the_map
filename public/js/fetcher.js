@@ -17,7 +17,7 @@ Fetcher.prototype.fetch = function() {
           fetcher.featureSpot.closeBox()
         }
         fetcher.featureSpot = spot
-        spot.displayProfile();
+        spot.displayProfile(i);
       });
       spot.addToList(i)
       $($('#list ol li')[i]).click(function() {
@@ -25,7 +25,7 @@ Fetcher.prototype.fetch = function() {
           fetcher.featureSpot.closeBox()
         }
         fetcher.featureSpot = spot
-        spot.displayProfile();
+        spot.displayProfile(i);
       });
     });
     if(response.length < 10){

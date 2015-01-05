@@ -22,6 +22,12 @@ li
   padding-top: 7px;
 }
 
+li a
+{
+  text-decoration: none;
+  color: white;
+}
+
 #list h1
 {
   margin-top: 16px;

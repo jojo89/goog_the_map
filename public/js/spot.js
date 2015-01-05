@@ -23,7 +23,9 @@ Spot.prototype.closeBox = function() {
   this.infoBox.close()
 }
 
-Spot.prototype.displayProfile = function() {
+Spot.prototype.displayProfile = function(i) {
+  $($('#list ol li a')).css('color', 'white');
+  $($('#list ol li a')[i]).css('color', 'red');
   $('#tweeter-page')[0].setAttribute("href", "https://twitter.com/" + this.user)
   $('#profile').css('background-image', 'url('+ this.background_image +')')
   $('.profile-pic')[0].setAttribute("src", this.profile_image.replace("_normal", ""))

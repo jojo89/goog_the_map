@@ -21,7 +21,7 @@ Map.prototype.clearMap = function(latlng) {
   this.fetcher.killFeatureSpot();
 };
 
-Map.prototype.fetch = function() {
+Map.prototype.fetch = function(list) {
   var lng = this.map.getCenter().lng();
   var lat = this.map.getCenter().lat();
   var phrase = document.getElementById('phrase').value;
@@ -29,6 +29,6 @@ Map.prototype.fetch = function() {
   if(typeof this.fetcher !== 'undefined'){
     this.clearMap()
   }
-  this.fetcher = new Fetcher(lat, lng, phrase)
+  this.fetcher = new Fetcher(lat, lng, phrase, list)
   this.fetcher.fetch();
 };

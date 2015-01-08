@@ -35,7 +35,8 @@ $(document).ready(function() {
     codeAddress(address);
   });
   $('#find_tweets').on('click',function(){
-    map.fetch(); 
+    var list = new List($('#list ol'));
+    map.fetch(list); 
   });
   $('#clear-tweet').on('click',function(){
      map.clearMap()

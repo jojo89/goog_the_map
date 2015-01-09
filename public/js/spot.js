@@ -34,13 +34,6 @@ Spot.prototype.displayProfile = function(i) {
   this.flashBox()
 }
 
-Spot.prototype.addToList = function(i) {
-  var spot = this
-  if ($('#list ol li')[i] != undefined){
-    $($('#list ol li')[i]).replaceWith("<li><a href='javascript:void(0)'>" + this.user + "- " + this.text.trunc(17) + "... " + this.retweet_count + "</a></li>")
-  }
-}
-
 Spot.prototype.popBox = function() {
   var _this = this;
   window.setTimeout(function(){

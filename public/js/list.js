@@ -19,7 +19,7 @@ List.prototype.clear = function() {
 }
 
 List.prototype.tweet = function(spot){
-  return "<li><a href='javascript:void(0)'>" + spot.user + "- " + spot.text.trunc(17) + "... " + spot.retweet_count + "</a></li>"
+  return "<li><a href='javascript:void(0)'>" + "<u><b>" + spot.user + "</b></u>" + "- " + spot.text.trunc(17) + "... " + spot.retweet_count + "</a></li>"
 }
 
 List.prototype.blank = function(){

@@ -3,17 +3,19 @@ body
   text-align: center;
   background: rgb(255, 225, 104);
   color: white;
-  font-family: 'Maven Pro', sans-serif;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 h1
 {
-  font-family: 'Arial Black', sans-serif;
   line-height: 1em;
+  font-weight: 100;
   color: #ffffff;
-  font-style:italic;
   font-size: 51px;
-  font-family: 'Maven Pro', sans-serif;
+  font-family: 'Titillium Web', sans-serif;
+  text-shadow: 0px 1px 1px #ABABAB;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }
 
 li
@@ -35,18 +37,20 @@ li a
   font-size: 40px;
 }
 
-.banner
-{
+.banner {
   padding: 1px 58px;
   width: 100%;
   display: inline;
+  box-shadow: 2px 2px 2px #21D7D7;
   display: inline-block;
   text-align: left;
   background: rgb(255, 120, 144);
   border-color: rgb(28, 224, 224);
 }
+
 #list
 {
+  box-shadow: 2px 2px 2px #21D7D7;
   width: 27%;
   float: left;
   border: 6px solid rgb(33, 215, 215);
@@ -57,9 +61,22 @@ li a
   height: 430px;
 }
 
+#directions
+{
+  border: 6px solid rgb(33, 215, 215);
+  float: right;
+  background: rgb(255, 120, 144);
+  border-radius: 49px;
+  margin-right: 38px;
+  margin-top: 28px;
+  margin-bottom: 64px;
+  width: 502px;
+}
+
 #map-canvas
 {
   float: right;
+  box-shadow: 2px 2px 2px #21D7D7;
   margin: 20px auto;
   width: 30%;
   height: 600px;
@@ -77,6 +94,7 @@ li a
   color: black;
   background: rgb(255, 255, 255);
   z-index: 99;
+  box-shadow: 2px 2px 2px #21D7D7;
   position: absolute;
 }
 
@@ -84,6 +102,7 @@ li a
 {
   width: 35%;
   float: left;
+  box-shadow: 2px 2px 2px #21D7D7;
   background-image: url("https://pbs.twimg.com/profile_banners/1157570274/1361054817/1500x500");
   border: 6px solid rgb(33, 215, 215);
   border-radius: 72px;
@@ -96,6 +115,8 @@ div#expose
 {
   float: right;
   margin-right: 66px;
+  margin-top: 19px;
+  margin-bottom: 64px;
 }
 
 input
@@ -106,6 +127,8 @@ input
   margin-left: auto;
   margin-right: auto;
   width: 250px;
+  box-shadow: 2px 2px 2px #21D7D7;
+  
 }
 
 .profile-pic
@@ -134,6 +157,7 @@ input
 .button
 {
   background: rgb(33, 215, 215);
+  margin-top: 16px;
 }
 
 .content
@@ -151,7 +175,10 @@ input
 
 .screenname
 {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
   border-radius: 6px;
+  text-shadow: 0px 1px 1px #ABABAB;
   float: right;
   color: white;
   margin-top: 60px;
@@ -163,12 +190,32 @@ input
 
 input, label
 {
+   -webkit-text-stroke-width: 0.5px;
+   -webkit-text-stroke-color: black;
     display:block;
     margin-bottom:4px;
 }
 label
 {
   font-size:20px;
+}
+
+p
+{
+  padding: 2px;
+}
+
+h2
+{
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
+   display:block;
+   margin-bottom:4px;
+}
+
+p
+{
+  
 }
 
 th

@@ -2,7 +2,7 @@
   <h1>Tweet Locator</h1>
 </div> 
 <div class="display">
-  <div id ="clear-tweet"><h2>Clear<br>Map</h2></div>
+  <div id ="clear-tweet"><h3>Clear<br>Map</h3></div>
  <div id="map-canvas"></div>
    <div id="profile">
      <img class="profile-pic" src="https://pbs.twimg.com/profile_images/3221004065/743ee2b5082dc27ac647e8f3ee18a0f0_400x400.gif">
@@ -24,14 +24,18 @@
       <li></li>
     </ol>
   </div>
- </div>
-
   <div id="expose"> 
     <form class="round" id="srch_map" >
       <label for="zip">Type in your zip code!</label><input type="text" id="zip" name="zip" placeholder="Zip Code">
       <input id="zip_srch" class="button" type="button"  value="relocate" >
       <label for="phrase">Tweet Search</label><input type="text" id="phrase" name="phrase" placeholder="What you are looking for?">
-      <input id="find_tweets" class="button" type="button"  value="Creep!" >
+      <input id="find_tweets" class="button" type="button"  value="Search!" >
     </form>
   </div>
+  <div id="directions"> 
+  <h2>Instructions</h2>
+  <p>1.To "relocate" the map window type the area code or name of the place where you would like to search for tweets in the first text box and click the relocate button. </p>
+  <p>2. Enter the word or words by which you would like to filter. (when entering multiple words twitter will search only for tweets containing all of the words submitted.)</p>
+  <p>3. click the "Search!" button to find your tweets!</p>
+ </div>
 </div> 

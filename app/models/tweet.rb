@@ -21,7 +21,7 @@ class Tweet
       latitude: @latitude,
       longitude: @longitude,
       retweet_count: @retweet_count,
-      favorite_count: @favorite_count
+      favorite_count: @favorite_count + @retweet_count
     }
   end
 end

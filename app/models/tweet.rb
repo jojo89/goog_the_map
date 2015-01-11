@@ -12,12 +12,17 @@ class Tweet
     @retweet_count = retweet_count
   end
   
+  def text
+    @text.gsub("&amp;", "&").gsub("&lt;", "<")
+  end
+  
   def to_json
+    puts @text if @user == "Neverregrets_"
     {
       user: @user,
       profile_image: @profile_image,
       background_image: @background_image,
-      text: @text,
+      text: text,
       latitude: @latitude,
       longitude: @longitude,
       retweet_count: @retweet_count,

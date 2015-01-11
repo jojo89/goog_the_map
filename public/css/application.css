@@ -70,7 +70,7 @@ li a
   margin-right: 38px;
   margin-top: 28px;
   margin-bottom: 64px;
-  width: 502px;
+  width: 482px;
 }
 
 #map-canvas
@@ -146,7 +146,7 @@ input
 .tweet
 {
   margin-top: 54px;
-  margin-left: 13px;
+  margin-left: 0px;
   border-radius: 23px;
   background: rgba(0, 0, 0, 0.6);
   padding: 2px;
@@ -175,6 +175,7 @@ input
 
 .screenname
 {
+  box-shadow: 2px 2px 2px #21D7D7;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
   border-radius: 6px;

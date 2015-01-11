@@ -189,6 +189,39 @@ input
   padding: 18px 16px;
 }
 
+.social
+{
+  list-style-type: none;
+  margin-right: 0px;
+  display: inline;
+  
+}
+
+.social li
+{
+  text-align: left;
+  padding-top: 7px;
+  margin-left: 33px;
+  display: inline-block;
+}
+
+#foot
+{
+  float: right;
+  border-top: 6px solid rgb(33, 215, 215);
+  background: rgb(255, 120, 144);
+  width: 100%;
+}
+
+.jojo
+{
+  font-size: 48px;
+  text-shadow: 0px 1px 1px #ABABAB;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  display: inline;
+}
+
 input, label
 {
    -webkit-text-stroke-width: 0.5px;

@@ -14,7 +14,6 @@ require 'yaml'
 require 'active_record'
 require 'logger'
 require 'twitter'
-require 'mongo'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
@@ -26,7 +25,6 @@ APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
 
 env_config = YAML.load_file(APP_ROOT.join('config', 'tokens.yaml'))
-include Mongo
 
 env_config.each do |key, value|
   ENV[key] = value

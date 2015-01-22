@@ -197,6 +197,19 @@ input
   
 }
 
+.highlight
+{
+  background-color: rgb(33, 215, 215);
+}
+
+.ng-invalid.ng-dirty {
+  border-color: red;
+}
+
+.ng-valid.ng-dirty {
+  border-color: green;
+}
+
 .social li
 {
   text-align: left;

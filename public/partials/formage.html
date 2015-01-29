@@ -1,0 +1,30 @@
+   <ul>
+     <li ng-repeat="review in form.reviews">
+       {{review.stars}}
+       {{review.person}}
+       {{review.text}}
+       {{review.createdAt | date}}
+     </li>
+   </ul>
+   <form name="reviewForm" ng-submit="reviewForm.$valid && form.addReview(review)" novalidate>
+     <blockquote>
+       <strong>{{form.object.stars}} Stars</strong>
+       {{form.object.text}}
+       <cite class="clearfix">—{{form.object.person}}</cite>
+     </blockquote>
+     <fieldset>
+       <select ng-model="form.object.stars" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required>
+         <option value="">Rate the Product</option>
+       </select>
+     </fieldset>
+     <fieldset>
+       <input ng-model="form.object.text" />
+     </fieldset>
+     <fieldset>
+       <input ng-model="form.object.person" required/>
+     </fieldset>
+     <fieldset>
+       <input type="submit">
+     </fieldset>
+   </form>
+   

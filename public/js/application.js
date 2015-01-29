@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  var List = list()
-  Map.makeMap();
+  // var List = list()
+  // Map.makeMap();
   $('#zip_srch').on('click',function(){
     var address = document.getElementById('zip').value;
     Map.codeAddress(address);
@@ -16,28 +16,128 @@ $(document).ready(function() {
 
 
   var app;
-  var app = angular.module('tweetFinder', []);
-  var initTweet = [
-    { 
-      name: 'Jodeza',
-      tweet: "Can't believe my cat right now. hashtag whatabitch lol.", 
-      canShow: true, 
-      price: 45, 
-      image: "https://pbs.twimg.com/profile_images/3221004065/743ee2b5082dc27ac647e8f3ee18a0f0_400x400.gif" 
-    }, 
-    { 
-      name: 'lint', 
-      tweet: "My Mom be trippin. She ain't even aight.", 
-      canShow: true, 
-      price: 34,
-      image: "https://pbs.twimg.com/profile_images/3221004065/743ee2b5082dc27ac647e8f3ee18a0f0_400x400.gif" 
+  var app = angular.module('tweetFinder', ['dep']);
+  app.controller('MapController', function($http, $scope){
+    map = this
+    this.tweets = [];
+    this.mapOptions = {
+      zoom: 8,
+      center: new google.maps.LatLng(34.397, -118.644),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    this.makeMap = function(){
+      this.map = new google.maps.Map(document.getElementById("map-canvas"), this.mapOptions);
+      this.latitude = this.map.getCenter().lat();
+      this.longitude = this.map.getCenter().lng();
+      
     }
-  ];
+    var list = this;
+    var nav = this
+    this.search = { place: "Los Angeles", phrase: "anything" }
+    this.codeAddress = function(){
+      new google.maps.Geocoder().geocode( { 'address': this.search.place }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.map.setCenter(results[0].geometry.location);
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+    }
+    $scope.loadData = function () {
+      $http.post("/twitter", { lng: map.map.getCenter().lng(), lat: map.map.getCenter().lat(), phrase: map.search.phrase }).success(function(data){
+        list.tweets = data;
+        list.featuredTweet = list.tweets[0];
+        $scope.data = {}
+        $scope.data.style = {'background-image' : 'url('+ list.featuredTweet.background_image +')'}
+        jQuery.each(data,function(i,val){
+          return new google.maps.Marker({
+              map: map.map,
+              title: 'Map Icons',
+              zIndex: 9,
+              icon: val.profile_image,
+              position: new google.maps.LatLng(val.latitude, val.longitude),
+              visible: true
+          });
+         });
+      });
+    };
+    angular.element(document).ready(function () { 
+      map.makeMap()
+      $scope.loadData()
+    });
+  });
 
-  app.controller('ListController', function(){
-    this.tweets = initTweet;
-   });
-   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   app.controller('ItemController', function(){
     this.item = 1;
 
@@ -49,14 +149,3 @@ $(document).ready(function() {
       return this.item === item
     };
   });
-  
-  app.controller('FormController', function(){
-    this.object = {stars: 4, text: "j", person: "rich keef"};
-    this.reviews = [{stars: 5, text: "ferret", person: "chief joseph"}, {stars: 4, text: "annual", person: "chief keef"}];
-    this.addReview = function(review){
-      this.object.createdAt = Date.now()
-      this.reviews.push(this.object)
-      this.object = {};
-    }
-  
-  })

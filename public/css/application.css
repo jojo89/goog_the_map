@@ -103,7 +103,6 @@ li a
   width: 35%;
   float: left;
   box-shadow: 2px 2px 2px #21D7D7;
-  background-image: url("https://pbs.twimg.com/profile_banners/1157570274/1361054817/1500x500");
   border: 6px solid rgb(33, 215, 215);
   border-radius: 72px;
   margin-top: 20px;
@@ -111,7 +110,7 @@ li a
   height: 430px;
 }
 
-div#expose 
+#expose 
 {
   float: right;
   margin-right: 66px;
@@ -199,7 +198,7 @@ input
 
 .highlight
 {
-  background-color: rgb(33, 215, 215);
+  color: rgb(33, 215, 215);
 }
 
 .ng-invalid.ng-dirty {

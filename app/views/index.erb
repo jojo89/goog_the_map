@@ -1,50 +1,45 @@
 <div class="banner">
-  <h1>Tweet Locator</h1>
+  <h1>{{ "Tweet Locator" }}</h1>
 </div> 
 <div class="display">
- <div id ="clear-tweet"><h3>Clear<br>Map</h3></div>
- <div id="map-canvas"></div>
-   <div id="profile">
-     <img class="profile-pic" src="https://pbs.twimg.com/profile_images/3221004065/743ee2b5082dc27ac647e8f3ee18a0f0_400x400.gif">
-     <a id= "tweeter-page" href="https://twitter.com/crazyboutelvish/"><h3 class="screenname">twitter_username</h3></a>
-     <div class="tweet"><p>The Tweet itself. #getit?</p></div>
+ <div  ng-controller="MapController as geo">
+   <div id ="clear-tweet"><h3>Clear<br>Map</h3></div>
+   <div id="map-canvas"></div>
+   <div id="profile" ng-style="data.style" >
+     <img class="profile-pic" ng-src="{{geo.featuredTweet.profile_image.replace('_normal', '')}}"/>
+     <a id= "tweeter-page" href="{{'https://twitter.com/' + geo.featuredTweet.user}}"><h3 class="screenname">{{geo.featuredTweet.user}}</h3></a>
+     <div class="tweet"><p>{{geo.featuredTweet.text}}</p></div>
    </div>
   <div id="list">
     <h1>Hottest Tweets</h1>
-    <ol>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ol>
-  </div>
-  <div id="expose"> 
-    <form class="round" id="srch_map" >
-      <label for="zip">Where would you like to search!</label><input type="text" id="zip" name="zip" placeholder="Zip Code">
-      <input id="zip_srch" class="button" type="button"  value="relocate" >
-      <label for="phrase">Tweet Search</label><input type="text" id="phrase" name="phrase" placeholder="What you are looking for?">
-      <input id="find_tweets" class="button" type="button"  value="Search!" >
-    </form>
-  </div>
-  <div id="directions"> 
-    <h2>Instructions</h2>
-    <p>1.To "relocate" the map window type the area code or name of the place where you would like to search for tweets in the first text box and click the relocate button. </p>
-    <p>2. Enter the word or words by which you would like to filter. (when entering multiple words twitter will search only for tweets containing all of the words submitted.)</p>
-    <p>3. click the "Search!" button to find your tweets!</p>
-   </div>
- </div> 
-   <div id="foot">
-     
-     <ul class="social">
-       <li><a href="https://soundcloud.com/freezelapd"><img src="images/Soundcloud-white-round-64.png"></a></li>
-       <li><h3 class="jojo"><a>a jojo89 joint</a></h3></li>
-       <li><a href="https://github.com/jojo89"><img src="images/Github-64.png"></a></li>
-     </ul> 
-   </div>
+      <ol>
+        <li ng-class="{ highlight: tweet == geo.featuredTweet }" ng-click="geo.featuredTweet = tweet" ng-repeat="tweet in geo.tweets | limitTo: 10 " >{{tweet.user}}- {{tweet.text.trunc(17) + "..." }} {{tweet.retweet_count }}</li>
+      </ol>
+    </div>
+     <div id="expose">
+      <form class="round" id="srch_map" name="reviewForm" ng-submit="geo.codeAddress()">
+        <label for="zip">Where would you like to search!</label>
+        <input ng-model="geo.search.place" type="text" id="zip" name="zip" placeholder="Zip Code">
+        <input id="zip_srch" class="button" type="submit"  value="relocate" ng-submit="loadData()">
+      </form>    
 
+      <form class="round" id="srch_map" name="reviewForm" ng-submit="loadData()">
+        <label for="phrase">Tweet Search</label>
+          <input ng-model="geo.search.phrase" type="text" id="phrase" name="phrase" placeholder="What you are looking for?">
+        <input id="find_tweets" class="button" type="submit"  value="Search!" >
+      </form>
+    </div>
+  </div>
+  <div id="directions" ng-controller="ItemController as item">
+    <h2>Instructions</h2>
+    <p ng-class="{ highlight: item.isSet(1) }" ng-click="item.setItem(1)"> 1.To "relocate" the map window type the area code or name of the place where you would like to search for tweets in the first text box and click the relocate button. </p>
+    <p ng-class="{ highlight: item.isSet(2) }" ng-click="item.setItem(2)">2. Enter the word or words by which you would like to filter. (when entering multiple words twitter will search only for tweets containing all of the words submitted.)</p>
+    <p ng-class="{ highlight: item.isSet(3) }" ng-click="item.setItem(3)">3. click the "Search!" button to find your tweets!</p>
+   </div>
+ </div>
+ <formage>
+
+ </formage>
+   <footer id="foot">
+
+   </footer>

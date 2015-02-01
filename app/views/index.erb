@@ -13,7 +13,7 @@
   <div id="list">
     <h1>Hottest Tweets</h1>
       <ol>
-        <li ng-class="{'highlight': {{tweet == geo.featuredTweet}}}" ng-click="geo.featuredTweet = tweet" ng-repeat="tweet in geo.tweets | limitTo: 10 " >{{tweet.user}}- {{tweet.text.trunc(17) + "..." }} {{tweet.retweet_count }}</li>
+        <li ng-class="{'highlight': tweet == geo.featuredTweet}" ng-click="geo.featuredTweet = tweet" ng-repeat="tweet in geo.tweets | limitTo: 10 " >{{tweet.user}}- {{tweet.text.trunc(17) + "..." }} {{tweet.retweet_count }}</li>
       </ol>
     </div>
      <div id="expose">

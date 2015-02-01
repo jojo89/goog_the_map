@@ -1,11 +1,7 @@
-
-
   var app;
- 
   var app = angular.module('tweetFinder', ['dep']);
-  
-  app.factory('spot', function () {
 
+  app.factory('spot', function () {
     function Spot(latitude, longitude, profile_image, text, retweet_count, user, background_image, map) {
       this.latitude = latitude;
       this.longitude = longitude;
@@ -18,17 +14,11 @@
       this.marker = this.makeMarker(latitude, longitude, profile_image, retweet_count);
       this.infoBox = this.makeBox(text);
     }
- 
-    /**
-     * Public method, assigned to prototype
-     */
+
     Spot.prototype.openBox = function() {
       this.infoBox.open(this.map, this.marker);
     };
 
-    /**
-     * Private property
-     */
     Spot.prototype.flashBox = function() {
       this.openBox()
       this.popBox()
@@ -37,9 +27,7 @@
     Spot.prototype.closeBox = function() {
       this.infoBox.close()
     }
-    /**
-     * Private function
-     */
+
     Spot.prototype.displayProfile = function(i) {
       this.flashBox()
     }
@@ -135,7 +123,6 @@
       if (list.featuredTweet != undefined){
         list.featuredTweet.closeBox();
       }
-      
       for (var i = 0; i < list.tweets.length; i++) {
         list.tweets[i].marker.setMap(null);
       }
@@ -155,6 +142,9 @@
     $scope.loadData = function () {
       $http.post("/twitter", { lng: map.map.getCenter().lng(), lat: map.map.getCenter().lat(), phrase: map.search.phrase }).success(function(data){
         $scope.data = {}
+        for (var i = 0; i < list.tweets.length; i++) {
+          list.tweets[i].marker.setMap(null);
+        }
         list.tweets = [];
         jQuery.each(data,function(i,val){
           var spt = spot.build(val, map.map)
@@ -177,87 +167,4 @@
       map.makeMap()
       $scope.loadData()
     });
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  app.controller('ItemController', function(){
-    this.item = 1;
-
-    this.setItem = function(item){
-     this.item = item;
-    };
-     
-    this.isSet = function(item){
-      return this.item === item
-    };
   });

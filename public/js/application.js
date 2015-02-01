@@ -1,20 +1,4 @@
 
-$(document).ready(function() {
-  // var List = list()
-  // Map.makeMap();
-  $('#zip_srch').on('click',function(){
-    var address = document.getElementById('zip').value;
-    Map.codeAddress(address);
-  });
-  $('#find_tweets').on('click',function(){
-    Map.fetch(List); 
-  });
-  $('#clear-tweet').on('click',function(){
-     List.clear()
-     Map.clearMap()
-  });
-});
-
 
   var app;
  
@@ -92,7 +76,14 @@ $(document).ready(function() {
 
     Spot.build = function (data, map) {
       return new Spot(
-        data.latitude, data.longitude, data.profile_image, data.text, data.retweet_count, data.user, data.background_image, map
+        data.latitude, 
+        data.longitude,
+        data.profile_image, 
+        data.text, 
+        data.retweet_count, 
+        data.user, 
+        data.background_image, 
+        map
       );
     };
 
@@ -133,9 +124,24 @@ $(document).ready(function() {
     var list = this;
     var nav = this;
     this.changedFeatured = function(tweet){
+      if (list.featuredTweet != undefined){
+        this.featuredTweet.closeBox();
+      }
       this.featuredTweet = tweet
       tweet.flashBox();
     }
+
+    this.flush = function(){
+      if (list.featuredTweet != undefined){
+        list.featuredTweet.closeBox();
+      }
+      
+      for (var i = 0; i < list.tweets.length; i++) {
+        list.tweets[i].marker.setMap(null);
+      }
+      this.tweets = [];
+    }
+
     this.search = { place: "Los Angeles", phrase: "anything" }
     this.codeAddress = function(){
       new google.maps.Geocoder().geocode( { 'address': this.search.place }, function(results, status) {

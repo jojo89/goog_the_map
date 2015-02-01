@@ -3,7 +3,7 @@
 </div> 
 <div class="display">
  <div  ng-controller="MapController as geo">
-   <div id ="clear-tweet"><h3>Clear<br>Map</h3></div>
+   <div id ="clear-tweet" ng-click="geo.flush()"><h3>Clear<br>Map</h3></div>
    <div id="map-canvas"></div>
    <div id="profile" ng-style="data.style" >
      <img class="profile-pic" ng-src="{{geo.featuredTweet.profile_image.replace('_normal', '')}}"/>

@@ -131,7 +131,11 @@ $(document).ready(function() {
       
     }
     var list = this;
-    var nav = this
+    var nav = this;
+    this.changedFeatured = function(tweet){
+      this.featuredTweet = tweet
+      tweet.flashBox();
+    }
     this.search = { place: "Los Angeles", phrase: "anything" }
     this.codeAddress = function(){
       new google.maps.Geocoder().geocode( { 'address': this.search.place }, function(results, status) {
@@ -150,13 +154,12 @@ $(document).ready(function() {
           var spt = spot.build(val, map.map)
           list.tweets.push(spt)
           google.maps.event.addListener(spt.marker,'click', function(e){
-            if (list.featured != undefined){
-              list.featured.closeBox()
+            if (list.featuredTweet != undefined){
+              list.featuredTweet.closeBox()
             }
             spt.flashBox();
             list.featuredTweet = spt;
             $scope.$apply();
-            list.featured = spt
           });
         });
         

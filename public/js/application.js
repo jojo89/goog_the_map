@@ -28,6 +28,7 @@
     this.flush = function(){
       if (list.featuredTweet != undefined){
         list.featuredTweet.closeBox();
+        $scope.data.style = {'background-image' : 'url("http://pbs.twimg.com/profile_images/564376863682732032/_pJ5ssOI.jpeg")'}     
       }
       for (var i = 0; i < list.tweets.length; i++) {
         list.tweets[i].marker.setMap(null);
@@ -52,6 +53,7 @@
       }
       list.tweets = [];
       // var map = mapi(34.397, -118.644)
+      list.flush();
       var geo = trio(map.search.phrase, map.map, list, $scope)
       // $http.get("/twitter/" + map.map.getCenter().lng() +"/" +map.map.getCenter().lat()+"/" + map.search.phrase).success(function(data){
       //   $scope.data = {}

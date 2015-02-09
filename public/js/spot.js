@@ -101,7 +101,7 @@ Spot.prototype.makeBox = function(text){
    }
  }); 
  
- app.factory('spot', function () {
+ app.factory('spotFactory', function () {
    return function(data, map){
      return new Spot.build(data, map)
    }
@@ -114,12 +114,11 @@ Spot.prototype.makeBox = function(text){
    }];
  });
 
- app.factory('momo', ['$resource', 'spot', 'Twitter', 'mapi', '$q',function ($resource, spot, Twitter, mapi, $q) {
+ app.factory('momo', ['$resource', 'spotFactory', 'Twitter', 'mapi', '$q',function ($resource, spotFactory, Twitter, mapi, $q) {
    var momo = {
      async: function(lat, lng, phrased){
        plomize = $q.defer();
        var t = new Twitter.query({ lat: lat, lng: lng, phrase: phrased }, function(things){
-         // rezol
          plomize.resolve(things)
        })
        return plomize.promise
@@ -128,22 +127,22 @@ Spot.prototype.makeBox = function(text){
   return momo
  }]);
  
-app.factory('trio', ['$resource', 'spot', 'Twitter', 'mapi', 'momo', 'xxx', function ($resource, spot, Twitter, mapi, momo, xxx) {
+app.factory('fetchAll', ['$resource', 'spotFactory', 'Twitter', 'mapi', 'momo', 'setupSpots', function ($resource, spotFactory, Twitter, mapi, momo, setupSpots) {
   return function(phrased, map, list, $scope){
-    // resul exsists before the rezol
      momo.async(map.getCenter().lng(), map.getCenter().lat(), phrased).then(function(resul){
-     var shreak = xxx(resul, map, list, $scope)
+     var shreak = setupSpots(resul, map, list, $scope)
       list.featuredTweet = list.tweets[0];
-      $scope.data.style = {'background-image' : 'url('+ list.featuredTweet.background_image +')'}     
+      $scope.data.style = {'background-image' : 'url('+ controller.featuredTweet.background_image +')'}
+      $scope.$apply();      
       return shreak
     })
   }
 }]);
 
-app.factory('xxx', ['$resource', 'spot', function ($resource, spot) {
+app.factory('setupSpots', ['$resource', 'spotFactory', function ($resource, spotFactory) {
   return function(data, map, controller, $scope){
     return data.map(function(x){
-      var spiz = spot(x, map)
+      var spiz = spotFactory(x, map)
       controller.tweets.push(spiz)
       google.maps.event.addListener(spiz.marker,'click', function(e){
         if (controller.featuredTweet != undefined){
@@ -151,16 +150,9 @@ app.factory('xxx', ['$resource', 'spot', function ($resource, spot) {
         }
        spiz.flashBox();
        controller.featuredTweet = spiz;
-       $scope.$apply();
+       $scope.data.style = {'background-image' : 'url('+ controller.featuredTweet.background_image +')'}
       });
     })
   }
 }]);
-
- // var lawn = function(lat, lng, $scope){
- //   var t = new Twitter.query({ lat:lat, lng:lng, phrase:"butts" }, function(things){
- //     things.map(function(d){return spaz(d, mapper)})
- //   })
- // }
- // return lawn
  

@@ -1,46 +1,43 @@
   var app;
   var app = angular.module('tweetFinder', ['ngResource','dep', 'ngRoute']);
 
-   app.controller('MapController', function($http, $scope, spot, Twitter, momo, mapi, $q, trio){
-    map = this
-    this.tweets = [];
-
-    this.mapOptions = {
+   app.controller('MapController', function($http, $scope, spotFactory, Twitter, momo, mapi, $q, fetchAll){
+    controller = this
+    controller.tweets = [];
+    controller.mapOptions = {
       zoom: 8,
       center: new google.maps.LatLng(34.397, -118.644),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    this.makeMap = function(){
-      this.map = new google.maps.Map(document.getElementById("map-canvas"), this.mapOptions);
-      this.latitude = this.map.getCenter().lat();
-      this.longitude = this.map.getCenter().lng();
+    controller.makeMap = function(){
+      controller.map = new google.maps.Map(document.getElementById("map-canvas"), this.mapOptions);
+      controller.latitude = this.map.getCenter().lat();
+      controller.longitude = this.map.getCenter().lng();
     }
-    var list = this;
-    var nav = this;
-    this.changedFeatured = function(tweet){
-      if (list.featuredTweet != undefined){
-        this.featuredTweet.closeBox();
+    controller.changedFeatured = function(tweet){
+      if (controller.featuredTweet != undefined){
+        controller.featuredTweet.closeBox();
       }
-      this.featuredTweet = tweet
+      controller.featuredTweet = tweet
       tweet.flashBox();
     }
-
-    this.flush = function(){
-      if (list.featuredTweet != undefined){
-        list.featuredTweet.closeBox();
-        $scope.data.style = {'background-image' : 'url("http://pbs.twimg.com/profile_images/564376863682732032/_pJ5ssOI.jpeg")'}     
+    controller.flush = function(){
+      if (controller.featuredTweet != undefined){
+        controller.featuredTweet.closeBox();
+        controller.featuredTweet = null
+        $scope.data.style = {'background' : 'rgb(255, 120, 144)'}
       }
-      for (var i = 0; i < list.tweets.length; i++) {
-        list.tweets[i].marker.setMap(null);
+      for (var i = 0; i < controller.tweets.length; i++) {
+        controller.tweets[i].marker.setMap(null);
       }
-      this.tweets = [];
+      controller.tweets = [];
     }
 
-    this.search = { place: "Los Angeles", phrase: "anything" }
-    this.codeAddress = function(){
-      new google.maps.Geocoder().geocode( { 'address': this.search.place }, function(results, status) {
+    controller.search = { place: "Los Angeles", phrase: "anything" }
+    controller.codeAddress = function(){
+      new google.maps.Geocoder().geocode( { 'address': controller.search.place }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-          map.map.setCenter(results[0].geometry.location);
+          controller.map.setCenter(results[0].geometry.location);
         } else {
           alert("Geocode was not successful for the following reason: " + status);
         }
@@ -48,37 +45,15 @@
     }
     $scope.data = {}
     $scope.loadData = function () {
-      for (var i = 0; i < list.tweets.length; i++) {
-        list.tweets[i].marker.setMap(null);
+      for (var i = 0; i < controller.tweets.length; i++) {
+        controller.tweets[i].marker.setMap(null);
       }
-      list.tweets = [];
-      // var map = mapi(34.397, -118.644)
-      list.flush();
-      var geo = trio(map.search.phrase, map.map, list, $scope)
-      // $http.get("/twitter/" + map.map.getCenter().lng() +"/" +map.map.getCenter().lat()+"/" + map.search.phrase).success(function(data){
-      //   $scope.data = {}
-      //   for (var i = 0; i < list.tweets.length; i++) {
-      //     list.tweets[i].marker.setMap(null);
-      //   }
-      //   list.tweets = [];
-      //   jQuery.each(data,function(i,val){
-      //     var spt = spot(val, map.map)
-      //     list.tweets.push(spt)
-      //     google.maps.event.addListener(spt.marker,'click', function(e){
-      //       if (list.featuredTweet != undefined){
-      //         list.featuredTweet.closeBox()
-      //       }
-      //       spt.flashBox();
-      //       list.featuredTweet = spt;
-      //       $scope.$apply();
-      //     });
-      //   });
-        // list.featuredTweet = list.tweets[0];
-        // $scope.data.style = {'background-image' : 'url('+ list.featuredTweet.background_image +')'}
-      // });
+      controller.tweets = [];
+      controller.flush();
+      fetchAll(controller.search.phrase, controller.map, controller, $scope)
     };
     angular.element(document).ready(function () { 
-      map.makeMap()
+      controller.makeMap()
       $scope.loadData()
     });
   });

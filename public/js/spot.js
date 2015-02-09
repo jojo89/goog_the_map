@@ -128,17 +128,33 @@ Spot.prototype.makeBox = function(text){
  }]);
  
 app.factory('trio', ['$resource', 'spot', 'Twitter', 'mapi', 'momo', 'xxx', function ($resource, spot, Twitter, mapi, momo, xxx) {
-  return function(lat, lng, map){
+  return function(lat, lng, map, list, $scope){
     aaa = momo.async(-118.644, 34).then(function(d){
-     return xxx(d, map)
+     var shreak = xxx(d, map, list, $scope)
+      list.featuredTweet = list.tweets[0];
+      $scope.data.style = {'background-image' : 'url('+ list.featuredTweet.background_image +')'}     
+      return shreak
     })
     return aaa
   }
 }]);
 
 app.factory('xxx', ['$resource', 'spot', function ($resource, spot) {
-  return function(data, map){
-    return data.map(function(x){return spot(x, map)})
+  return function(data, map, controller, $scope){
+    return data.map(function(x){
+      var spiz = spot(x, map)
+      controller.tweets.push(spiz)
+      google.maps.event.addListener(spiz.marker,'click', function(e){
+        if (controller.featuredTweet != undefined){
+          controller.featuredTweet.closeBox()
+        }
+       spiz.flashBox();
+       controller.featuredTweet = spiz;
+       featuredTweet
+       $scope.$apply();
+      });
+      
+    })
   }
 }]);
 

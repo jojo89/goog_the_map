@@ -52,7 +52,7 @@
       }
       list.tweets = [];
       // var map = mapi(34.397, -118.644)
-      var geo = trio(-118.644, 34, map.map, list, $scope)
+      var geo = trio(map.search.phrase, map.map, list, $scope)
       // $http.get("/twitter/" + map.map.getCenter().lng() +"/" +map.map.getCenter().lat()+"/" + map.search.phrase).success(function(data){
       //   $scope.data = {}
       //   for (var i = 0; i < list.tweets.length; i++) {

@@ -20,6 +20,7 @@
       }
       controller.featuredTweet = tweet
       tweet.flashBox();
+      $scope.data.style = {'background-image' : 'url('+ controller.featuredTweet.background_image +')'}
     }
     controller.flush = function(){
       if (controller.featuredTweet != undefined){
@@ -32,7 +33,6 @@
       }
       controller.tweets = [];
     }
-
     controller.search = { place: "Los Angeles", phrase: "anything" }
     controller.codeAddress = function(){
       new google.maps.Geocoder().geocode( { 'address': controller.search.place }, function(results, status) {

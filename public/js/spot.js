@@ -132,8 +132,7 @@ app.factory('fetchAll', ['$resource', 'spotFactory', 'Twitter', 'mapi', 'momo', 
      momo.async(map.getCenter().lng(), map.getCenter().lat(), phrased).then(function(resul){
      var shreak = setupSpots(resul, map, list, $scope)
       list.featuredTweet = list.tweets[0];
-      $scope.data.style = {'background-image' : 'url('+ controller.featuredTweet.background_image +')'}
-      $scope.$apply();      
+      $scope.data.style = {'background-image' : 'url('+ controller.featuredTweet.background_image +')'}      
       return shreak
     })
   }
@@ -151,6 +150,7 @@ app.factory('setupSpots', ['$resource', 'spotFactory', function ($resource, spot
        spiz.flashBox();
        controller.featuredTweet = spiz;
        $scope.data.style = {'background-image' : 'url('+ controller.featuredTweet.background_image +')'}
+       $scope.$apply()
       });
     })
   }

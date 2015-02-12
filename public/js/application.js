@@ -42,7 +42,6 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
             }
         });
     }
-    $scope.data = {}
     $scope.loadData = function() {
         for (var i = 0; i < controller.tweets.length; i++) {
             controller.tweets[i].marker.setMap(null);

@@ -1,9 +1,21 @@
 var app;
 var app = angular.module('tweetFinder', ['ngResource', 'dep', 'ngRoute']);
 
-app.controller('MapController', function($http, $scope, spotFactory, twitterSinatraApi, Query, $q, fetchAll, gMap) {
+app.controller('MapController', function($http, $scope, spotFactory, twitterSinatraApi, Query, $q, fetchAll, gMap, $interval) {
     controller = this
     controller.tweets = [];
+    controller.loading = "Loading"
+    controller.load = function(){
+      $interval(function(){
+        console.log(controller.loading)
+        if(controller.loading.length < 12){
+          controller.loading = controller.loading + "."
+        }else{
+          controller.loading = "Loading"
+        }
+      }, 100, 10);
+      
+    }
     controller.makeMap = function() {
         controller.map = gMap(34.397, -118.644)
     }
@@ -18,9 +30,6 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
         if (controller.featuredTweet != undefined) {
             controller.featuredTweet.closeBox();
             controller.featuredTweet = null
-            $scope.data.style = {
-                'background': 'rgb(255, 120, 144)'
-            }
         }
         for (var i = 0; i < controller.tweets.length; i++) {
             controller.tweets[i].marker.setMap(null);
@@ -48,6 +57,7 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
         }
         controller.tweets = [];
         controller.flush();
+        controller.load()
         fetchAll(controller.search.phrase, controller.map, controller, $scope)
     };
     angular.element(document).ready(function() {

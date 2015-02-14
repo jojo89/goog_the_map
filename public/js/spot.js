@@ -77,7 +77,7 @@ Spot.build = function(data, map) {
 
 Spot.prototype.makeBox = function(text) {
     return new InfoBox({
-        content: '<div style="background-repeat:no-repeat;background:white; padding: 10px 30px; color:blue; border-radius:150px; ">' + text + '</div>',
+        content: '<div  style="background-repeat:no-repeat;background:white; padding: 10px 30px; color:black; border-radius:150px; font-family: Futura; ">' + text + '</div>',
         disableAutoPan: false,
         maxWidth: 0,
         pixelOffset: new google.maps.Size(-140, 0),

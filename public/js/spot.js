@@ -75,9 +75,13 @@ Spot.build = function(data, map) {
     );
 };
 
+Spot.prototype.div = function(text) {
+  return '<div  style="background-repeat:no-repeat;background:white; padding: 10px 30px; color:black; border-radius:150px; font-family: Futura;  text-shadow: 0px 0px #000000;">' + text + '</div>'
+}
+
 Spot.prototype.makeBox = function(text) {
     return new InfoBox({
-        content: '<div  style="background-repeat:no-repeat;background:white; padding: 10px 30px; color:black; border-radius:150px; font-family: Futura; ">' + text + '</div>',
+        content: this.div(text),
         disableAutoPan: false,
         maxWidth: 0,
         pixelOffset: new google.maps.Size(-140, 0),

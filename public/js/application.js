@@ -22,7 +22,7 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
       }, 5000);
     }
     controller.makeMap = function() {
-        controller.map = gMap(34.397, -118.644)
+        controller.map = gMap(40.7127, -74)
     }
     controller.changedFeatured = function(tweet) {
         if (controller.featuredTweet != undefined) {

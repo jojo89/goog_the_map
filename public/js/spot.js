@@ -47,14 +47,18 @@ Spot.prototype.makeMarker = function() {
 }
 
 Spot.prototype.hot = function() {
-    return "/images/1420351727_132117.ico"
+    return "/images/1423904930_fire-64.png"
+}
+
+Spot.prototype.not = function() {
+    return "/images/1423905602_twitter-32.png"
 }
 
 Spot.prototype.isHot = function(profile_image, retweetCount) {
     if (retweetCount > 2) {
         return this.hot()
     } else {
-        return profile_image;
+        return this.not()
     }
 }
 

@@ -10,7 +10,9 @@
      <a id= "tweeter-page" href="{{'https://twitter.com/' + geo.featuredTweet.user}}"><h3 class="screenname">{{geo.featuredTweet.user}}</h3></a>
      <div class="tweet"><p>{{geo.featuredTweet.text}}</p></div>
    </div>
-  <div id="profile" ng-if="!geo.featuredTweet" ><h1 class="load">{{geo.loading}}</h1></div>
+  <div id="profile" ng-if="!geo.featuredTweet" >
+    <img class="profile-pic2" ng-src="{{geo.noTweetImage}}" ng-show="geo.noTweetImage" />
+  </div>
   <div id="list" ng-if="geo.featuredTweet">
     <h1>Hottest Tweets</h1>
     <ol>
@@ -27,7 +29,7 @@
       <form class="round" id="srch_map" name="reviewForm" ng-submit="loadData()">
         <label for="phrase">Tweet Search</label>
           <input ng-model="geo.search.phrase" type="text" id="phrase" name="phrase" placeholder="What you are looking for?">
-        <input id="find_tweets" class="button" type="submit"  value="Search!" >
+          <input id="find_tweets" class="button" type="submit"  value="Search!" >
       </form>
     </div>
   </div>

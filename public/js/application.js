@@ -1,13 +1,13 @@
 var app;
 var app = angular.module('tweetFinder', ['ngResource', 'dep', 'ngRoute']);
 
-app.controller('MapController', function($http, $scope, spotFactory, twitterSinatraApi, Query, $q, fetchAll, gMap, $interval) {
+app.controller('MapController', function($http, $scope, spotFactory, twitterSinatraApi, Query, $q, fetchAll, gMap, $interval, $timeout) {
     controller = this
     controller.tweets = [];
     controller.loading = "Loading"
+    controller.noTweetImage = null
     controller.load = function(){
       $interval(function(){
-        console.log(controller.loading)
         if(controller.loading.length < 12){
           controller.loading = controller.loading + "."
         }else{
@@ -15,6 +15,11 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
         }
       }, 100, 10);
       
+      $timeout(function(){
+          controller.loading = "Sorry No Tweets :("
+          controller.noTweetImage = "http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2008/03/28/400.276.jpg"
+        
+      }, 5000);
     }
     controller.makeMap = function() {
         controller.map = gMap(34.397, -118.644)
@@ -52,6 +57,7 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
         });
     }
     $scope.loadData = function() {
+        controller.noTweetImage = ""
         for (var i = 0; i < controller.tweets.length; i++) {
             controller.tweets[i].marker.setMap(null);
         }

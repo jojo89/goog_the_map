@@ -84,7 +84,7 @@ Spot.prototype.makeBox = function(text) {
         zIndex: null,
         boxStyle: {},
         closeBoxMargin: "10px 2px 2px 2px",
-        closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+        closeBoxURL: "/images/1423914636_Black_Remove.png",
         infoBoxClearance: new google.maps.Size(1, 1),
         isHidden: false,
         pane: "floatPane",

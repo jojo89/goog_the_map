@@ -13,9 +13,6 @@ h1
   color: #ffffff;
   font-size: 51px;
   font-family: 'Titillium Web', sans-serif;
-  text-shadow: 0px 1px 1px #ABABAB;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
 }
 
 li
@@ -98,6 +95,10 @@ li a
   position: absolute;
 }
 
+#locator{
+  display: inherit;
+}
+
 #profile
 {
   width: 35%;
@@ -109,6 +110,10 @@ li a
   margin-top: 20px;
   margin-left: 0px;
   height: 430px;
+}
+
+#newish{
+  
 }
 
 #expose 
@@ -129,6 +134,23 @@ input
   width: 250px;
   box-shadow: 2px 2px 2px #21D7D7;
   
+}
+
+.me {
+max-height: 111px;
+float: right;
+border-radius: 84px;
+margin-top: 4px;
+margin-right: 19px;
+border: 1px solid rgb(33, 215, 215);
+}
+
+.joza {
+  max-height: 111px;
+  font-size:20px;
+  float: right;
+  margin-top: 39px;
+  margin-right: 80px;
 }
 
 .profile-pic
@@ -188,10 +210,7 @@ input
 .screenname
 {
   box-shadow: 2px 2px 2px #21D7D7;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
   border-radius: 6px;
-  text-shadow: 0px 1px 1px #ABABAB;
   float: right;
   color: white;
   margin-top: 60px;
@@ -238,18 +257,14 @@ input
 .jojo
 {
   font-size: 48px;
-  text-shadow: 0px 1px 1px #ABABAB;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
   display: inline;
 }
 
 input, label
 {
-   -webkit-text-stroke-width: 0.5px;
-   -webkit-text-stroke-color: black;
-    display:block;
-    margin-bottom:4px;
+  display: block;
+  margin-bottom: 4px;
+  color: black;
 }
 label
 {
@@ -263,8 +278,6 @@ p
 
 h2
 {
-  -webkit-text-stroke-width: 0.5px;
-  -webkit-text-stroke-color: black;
    display:block;
    margin-bottom:4px;
 }

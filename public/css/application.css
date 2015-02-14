@@ -3,7 +3,7 @@ body
   text-align: center;
   background: rgb(255, 225, 104);
   color: white;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
 }
 
 h1
@@ -12,7 +12,7 @@ h1
   font-weight: 100;
   color: #ffffff;
   font-size: 51px;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
 }
 
 li
@@ -122,7 +122,7 @@ li a
 #expose 
 {
   float: right;
-  margin-right: 66px;
+  margin-right: 49px;
   margin-top: 19px;
   margin-bottom: 64px;
 }

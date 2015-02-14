@@ -6,20 +6,20 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
     controller.tweets = [];
     controller.loading = "Loading"
     controller.noTweetImage = null
-    controller.load = function(){
-      $interval(function(){
-        if(controller.loading.length < 12){
-          controller.loading = controller.loading + "."
-        }else{
-          controller.loading = "Loading"
-        }
-      }, 100, 10);
-      
-      $timeout(function(){
-          controller.loading = "Sorry No Tweets :("
-          controller.noTweetImage = "http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2008/03/28/400.276.jpg"
-        
-      }, 5000);
+    controller.load = function() {
+        $interval(function() {
+            if (controller.loading.length < 12) {
+                controller.loading = controller.loading + "."
+            } else {
+                controller.loading = "Loading"
+            }
+        }, 100, 10);
+
+        $timeout(function() {
+            controller.loading = "Sorry No Tweets :("
+            controller.noTweetImage = "http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2008/03/28/400.276.jpg"
+
+        }, 5000);
     }
     controller.makeMap = function() {
         controller.map = gMap(40.7127, -74)

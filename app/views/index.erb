@@ -7,7 +7,7 @@
 </div> 
 <div class="display">
  <div  ng-controller="MapController as geo">
-   <div id ="clear-tweet" ng-click="geo.flush()"><h3>Clear<br>Map</h3></div>
+   <div id ="clear-tweet" ng-click="geo.flush()"><h3><a href="javascript:void(0)">Clear<br>Map<a/></h3></div>
    <div id="map-canvas"></div>
    <div id="profile" ng-style="{'background':'transparent url(' + geo.featuredTweet.background_image + ')'}" ng-if="geo.featuredTweet" >
      <img class="profile-pic" ng-src="{{geo.featuredTweet.profile_image.replace('_normal', '')}}" ng-show="geo.featuredTweet" />
@@ -20,18 +20,15 @@
   <div id="list" ng-if="geo.featuredTweet">
     <h1>Hottest Tweets</h1>
     <ol>
-      <li ng-class="{'highlight': tweet == geo.featuredTweet}" ng-click="geo.changedFeatured(tweet)" ng-repeat="tweet in geo.tweets | limitTo: 10 " >{{tweet.user}}- {{tweet.text.trunc(17) + "..." }} {{tweet.retweet_count }}</li>
+      <li ng-class="{'highlight': tweet == geo.featuredTweet}" ng-click="geo.changedFeatured(tweet)" ng-repeat="tweet in geo.tweets | limitTo: 10 " ><a href="javascript:void(0)">{{tweet.user}}- {{tweet.text.trunc(17) + "..." }} {{tweet.retweet_count }}</a></li>
     </ol>
     </div>
     <div id="list" ng-if="!geo.featuredTweet"><h1 class="load">{{geo.loading}}</h1></div>
     <div id="expose">
-      <form class="round" id="srch_map" name="reviewForm" ng-submit="geo.codeAddress()">
-        <label for="zip">Where would you like to search!</label>
-        <input ng-model="geo.search.place" type="text" id="zip" name="zip" placeholder="Zip Code">
-        <input id="zip_srch" class="button" type="submit"  value="relocate" ng-submit="loadData()">
-      </form>    
-      <form class="round" id="srch_map" name="reviewForm" ng-submit="loadData()">
-        <label for="phrase">Tweet Search</label>
+      <form class="round" id="srch_map" name="reviewForm" ng-submit="loadData();">
+          <label for="zip">Where would you like to search!</label>
+          <input ng-model="geo.search.place" type="text" id="zip" name="zip" placeholder="Zip Code">
+          <label for="phrase">Key Words</label>
           <input ng-model="geo.search.phrase" type="text" id="phrase" name="phrase" placeholder="What you are looking for?">
           <input id="find_tweets" class="button" type="submit"  value="Search!" >
       </form>

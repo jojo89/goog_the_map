@@ -42,7 +42,7 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
         controller.tweets = [];
     }
     controller.search = {
-        place: "Los Angeles",
+        place: "New York City",
         phrase: "anything"
     }
     controller.codeAddress = function() {
@@ -57,15 +57,18 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
         });
     }
     $scope.loadData = function() {
-        controller.noTweetImage = ""
-        for (var i = 0; i < controller.tweets.length; i++) {
-            controller.tweets[i].marker.setMap(null);
-        }
-        controller.tweets = [];
-        controller.flush();
-        controller.load()
-        fetchAll(controller.search.phrase, controller.map, controller, $scope)
-    };
+        controller.codeAddress()
+        $timeout(function() {
+          controller.noTweetImage = ""
+          for (var i = 0; i < controller.tweets.length; i++) {
+              controller.tweets[i].marker.setMap(null);
+          }
+          controller.tweets = [];
+          controller.flush();
+          controller.load()
+          fetchAll(controller.search.phrase, controller.map, controller, $scope)
+        }, 200);
+      };
     angular.element(document).ready(function() {
         controller.makeMap()
         $scope.loadData()

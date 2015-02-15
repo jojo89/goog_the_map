@@ -19,6 +19,7 @@ h1
 li
 {
   text-align: left;
+  font-size: 15px;
   padding-top: 7px;
 }
 
@@ -49,6 +50,11 @@ li a
   color: white;
 }
 
+h3 a{
+  text-decoration: none;
+  color: black;
+}
+
 #list
 {
   box-shadow: 2px 2px 2px #21D7D7;
@@ -59,7 +65,7 @@ li a
   border-radius: 72px;
   margin-top: 20px;
   margin-left: 30px;
-  height: 430px;
+  height: 382px;
 }
 
 #directions
@@ -248,7 +254,7 @@ border-radius: 84px;
   top: 30%;
 }
 
-.highlight
+.highlight, .highlight a
 {
   color: #14FFFF;
 }

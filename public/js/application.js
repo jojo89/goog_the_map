@@ -20,17 +20,17 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
             $scope.noTweetImage = "http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2008/03/28/400.276.jpg"
         }, 5000);
     }
-    controller.makeMap = function() {
+    $scope.makeMap = function() {
         $scope.map = gMap(40.7127, -74)
     }
-    controller.changedFeatured = function(tweet) {
+    $scope.changedFeatured = function(tweet) {
         if ($scope.featuredTweet != undefined) {
             $scope.featuredTweet.closeBox();
         }
         $scope.featuredTweet = tweet
         tweet.flashBox();
     }
-    controller.flush = function() {
+    $scope.flush = function() {
         if ($scope.featuredTweet != undefined) {
             $scope.featuredTweet.closeBox();
             $scope.featuredTweet = null
@@ -44,7 +44,7 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
         place: "New York City",
         phrase: "anything"
     }
-    controller.codeAddress = function() {
+    $scope.codeAddress = function() {
         new google.maps.Geocoder().geocode({
             'address': $scope.search.place
         }, function(results, status) {
@@ -56,20 +56,20 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
         });
     }
     $scope.loadData = function() {
-        controller.codeAddress()
+        $scope.codeAddress()
         $timeout(function() {
           $scope.noTweetImage = ""
           for (var i = 0; i < $scope.tweets.length; i++) {
               $scope.tweets[i].marker.setMap(null);
           }
           $scope.tweets = [];
-          controller.flush();
+          $scope.flush();
           $scope.load()
           fetchAll($scope)
         }, 200);
       };
     angular.element(document).ready(function() {
-        controller.makeMap()
+        $scope.makeMap()
         $scope.loadData()
     });
 });

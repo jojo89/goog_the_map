@@ -7,7 +7,7 @@
 </div> 
 <div class="display">
  <div  ng-controller="MapController as geo">
-   <div id ="clear-tweet" ng-click="geo.flush()"><h3><a href="javascript:void(0)">Clear<br>Map<a/></h3></div>
+   <div id ="clear-tweet" ng-click="flush()"><h3><a href="javascript:void(0)">Clear<br>Map<a/></h3></div>
    <div id="map-canvas"></div>
    <div id="profile" ng-style="{'background':'transparent url(' + featuredTweet.background_image + ')'}" ng-if="featuredTweet" >
      <img class="profile-pic" ng-src="{{featuredTweet.profile_image.replace('_normal', '')}}" ng-show="featuredTweet" />
@@ -20,7 +20,7 @@
   <div id="list" ng-if="featuredTweet">
     <h1>Hottest Tweets</h1>
     <ol>
-      <li ng-class="{'highlight': tweet == featuredTweet}" ng-click="geo.changedFeatured(tweet)" ng-repeat="tweet in tweets | limitTo: 10 " ><a href="javascript:void(0)">{{tweet.user}}- {{tweet.text.trunc(17) + "..." }} {{tweet.retweet_count }}</a></li>
+      <li ng-class="{'highlight': tweet == featuredTweet}" ng-click="changedFeatured(tweet)" ng-repeat="tweet in tweets | limitTo: 10 " ><a href="javascript:void(0)">{{tweet.user}}- {{tweet.text.trunc(17) + "..." }} {{tweet.retweet_count }}</a></li>
     </ol>
     </div>
     <div id="list" ng-if="!featuredTweet"><h1 class="load">{{loading}}</h1></div>

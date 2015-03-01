@@ -12,6 +12,7 @@ gem 'activesupport'
 gem 'activerecord'
 gem 'twitter'
 gem 'rake'
+gem 'less'
 gem 'bson_ext'
 
 gem 'shotgun'

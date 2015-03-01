@@ -3,54 +3,53 @@ var app = angular.module('tweetFinder', ['ngResource', 'dep', 'ngRoute']);
 
 app.controller('MapController', function($http, $scope, spotFactory, twitterSinatraApi, Query, $q, fetchAll, gMap, $interval, $timeout) {
     controller = this
-    controller.tweets = [];
-    controller.loading = "Loading"
-    controller.noTweetImage = null
-    controller.load = function() {
+    $scope.tweets = [];
+    $scope.loading = "Loading"
+    $scope.noTweetImage = null
+    $scope.load = function() {
         $interval(function() {
-            if (controller.loading.length < 12) {
-                controller.loading = controller.loading + "."
+            if ($scope.loading.length < 12) {
+                $scope.loading = $scope.loading + "."
             } else {
-                controller.loading = "Loading"
+                $scope.loading = "Loading"
             }
         }, 100, 10);
 
         $timeout(function() {
-            controller.loading = "Sorry No Tweets :("
-            controller.noTweetImage = "http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2008/03/28/400.276.jpg"
-
+            $scope.loading = "Sorry No Tweets :("
+            $scope.noTweetImage = "http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2008/03/28/400.276.jpg"
         }, 5000);
     }
     controller.makeMap = function() {
-        controller.map = gMap(40.7127, -74)
+        $scope.map = gMap(40.7127, -74)
     }
     controller.changedFeatured = function(tweet) {
-        if (controller.featuredTweet != undefined) {
-            controller.featuredTweet.closeBox();
+        if ($scope.featuredTweet != undefined) {
+            $scope.featuredTweet.closeBox();
         }
-        controller.featuredTweet = tweet
+        $scope.featuredTweet = tweet
         tweet.flashBox();
     }
     controller.flush = function() {
-        if (controller.featuredTweet != undefined) {
-            controller.featuredTweet.closeBox();
-            controller.featuredTweet = null
+        if ($scope.featuredTweet != undefined) {
+            $scope.featuredTweet.closeBox();
+            $scope.featuredTweet = null
         }
-        for (var i = 0; i < controller.tweets.length; i++) {
-            controller.tweets[i].marker.setMap(null);
+        for (var i = 0; i < $scope.tweets.length; i++) {
+            $scope.tweets[i].marker.setMap(null);
         }
-        controller.tweets = [];
+        $scope.tweets = [];
     }
-    controller.search = {
+    $scope.search = {
         place: "New York City",
         phrase: "anything"
     }
     controller.codeAddress = function() {
         new google.maps.Geocoder().geocode({
-            'address': controller.search.place
+            'address': $scope.search.place
         }, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
-                controller.map.setCenter(results[0].geometry.location);
+                $scope.map.setCenter(results[0].geometry.location);
             } else {
                 alert("Geocode was not successful for the following reason: " + status);
             }
@@ -59,14 +58,14 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
     $scope.loadData = function() {
         controller.codeAddress()
         $timeout(function() {
-          controller.noTweetImage = ""
-          for (var i = 0; i < controller.tweets.length; i++) {
-              controller.tweets[i].marker.setMap(null);
+          $scope.noTweetImage = ""
+          for (var i = 0; i < $scope.tweets.length; i++) {
+              $scope.tweets[i].marker.setMap(null);
           }
-          controller.tweets = [];
+          $scope.tweets = [];
           controller.flush();
-          controller.load()
-          fetchAll(controller.search.phrase, controller.map, controller, $scope)
+          $scope.load()
+          fetchAll($scope)
         }, 200);
       };
     angular.element(document).ready(function() {

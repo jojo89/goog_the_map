@@ -10,8 +10,8 @@ app.factory('gMap', function() {
 });
 
 app.factory('spotFactory', function() {
-    return function(data, map) {
-        return new Spot.build(data, map)
+    return function(data, $scope) {
+        return new Spot.build(data, $scope.map)
     }
 });
 
@@ -40,25 +40,25 @@ app.factory('Query', ['$resource', 'spotFactory', 'twitterSinatraApi', '$q', fun
 }]);
 
 app.factory('fetchAll', ['$resource', 'spotFactory', 'Query', 'setupSpots', function($resource, spotFactory, Query, setupSpots) {
-    return function(keywords, map, list, $scope) {
-        Query.fetch(map.getCenter().lng(), map.getCenter().lat(), keywords).then(function(result) {
-            setupSpots(result, map, list, $scope)
-            list.featuredTweet = list.tweets[0];
+    return function($scope) {
+        Query.fetch($scope.map.getCenter().lng(), $scope.map.getCenter().lat(), $scope.search.phrase).then(function(result) {
+            setupSpots(result, $scope)
+            $scope.featuredTweet = $scope.tweets[0];
         })
     }
 }]);
 
 app.factory('setupSpots', ['$resource', 'spotFactory', function($resource, spotFactory) {
-    return function(data, map, controller, $scope) {
+    return function(data, $scope) {
         return data.map(function(tweetData) {
-            var spot = spotFactory(tweetData, map)
-            controller.tweets.push(spot)
+            var spot = spotFactory(tweetData, $scope)
+            $scope.tweets.push(spot)
             google.maps.event.addListener(spot.marker, 'click', function(e) {
-                if (controller.featuredTweet != undefined) {
-                    controller.featuredTweet.closeBox()
+                if ($scope.featuredTweet != undefined) {
+                    $scope.featuredTweet.closeBox()
                 }
                 spot.flashBox();
-                controller.featuredTweet = spot;
+                $scope.featuredTweet = spot;
                 $scope.$apply()
             });
         })

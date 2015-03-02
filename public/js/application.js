@@ -6,7 +6,7 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
     $scope.tweets = [];
     $scope.loading = "Loading"
     $scope.noTweetImage = null
-    $scope.load = function() {
+    $scope.waitForTweets = function() {
         $interval(function() {
             if ($scope.loading.length < 12) {
                 $scope.loading = $scope.loading + "."
@@ -19,9 +19,6 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
             $scope.loading = "Sorry No Tweets :("
             $scope.noTweetImage = "http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2008/03/28/400.276.jpg"
         }, 5000);
-    }
-    $scope.makeMap = function() {
-        $scope.map = gMap(40.7127, -74)
     }
     $scope.changedFeatured = function(tweet) {
         if ($scope.featuredTweet != undefined) {
@@ -55,21 +52,45 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
             }
         });
     }
+
     $scope.loadData = function() {
-        $scope.codeAddress()
-        $timeout(function() {
+      $timeout(function() {
           $scope.noTweetImage = ""
           for (var i = 0; i < $scope.tweets.length; i++) {
               $scope.tweets[i].marker.setMap(null);
           }
           $scope.tweets = [];
           $scope.flush();
-          $scope.load()
+          $scope.waitForTweets()
           fetchAll($scope)
         }, 200);
       };
+
+      $scope.runSearch = function() {
+        $scope.codeAddress()
+        $scope.loadData()
+      }
+
     angular.element(document).ready(function() {
-        $scope.makeMap()
+        $scope.map = gMap(40.7127, -74)
         $scope.loadData()
     });
-});
+})
+.directive('list', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'partials/list.erb'
+  };
+})
+.directive('profile', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'partials/profile.erb'
+  };
+})
+.directive('formage', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'partials/formage.erb'
+  };
+})

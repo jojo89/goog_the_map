@@ -14,25 +14,17 @@
      <a id= "tweeter-page" href="{{'https://twitter.com/' + featuredTweet.user}}"><h3 class="screenname">{{featuredTweet.user}}</h3></a>
      <div class="tweet"><p>{{featuredTweet.text}}</p></div>
    </div>
-  <div id="profile" ng-if="!featuredTweet" >
-    <img class="profile-pic2" ng-src="{{noTweetImage}}" ng-show="noTweetImage" />
-  </div>
+  <profile>
+  </profile>
   <div id="list" ng-if="featuredTweet">
     <h1>Hottest Tweets</h1>
-    <ol>
-      <li ng-class="{'highlight': tweet == featuredTweet}" ng-click="changedFeatured(tweet)" ng-repeat="tweet in tweets | limitTo: 10 " ><a href="javascript:void(0)">{{tweet.user}}- {{tweet.text.trunc(17) + "..." }} {{tweet.retweet_count }}</a></li>
-    </ol>
+    <list>
+   </list>
     </div>
     <div id="list" ng-if="!featuredTweet"><h1 class="load">{{loading}}</h1></div>
-    <div id="expose">
-      <form class="round" id="srch_map" name="reviewForm" ng-submit="loadData();">
-          <label for="zip">Where would you like to search!</label>
-          <input ng-model="search.place" type="text" id="zip" name="zip" placeholder="Zip Code">
-          <label for="phrase">Key Words</label>
-          <input ng-model="search.phrase" type="text" id="phrase" name="phrase" placeholder="What you are looking for?">
-          <input id="find_tweets" class="button" type="submit"  value="Search!" >
-      </form>
-    </div>
+  <formage>
+  </formage>
+  
   </div>
   <div id="directions">
     <instructions>

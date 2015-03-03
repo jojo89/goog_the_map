@@ -1,19 +1,10 @@
-<div class="banner">
-  <h1 id="locator">{{ "Tweet Locator" }}</h1>
-  <a href="http://burtfol.io/">
-    <h4 class='joza'>burtofol.io</h4>
-    <img src="/images/743ee2b5082dc27ac647e8f3ee18a0f0_400x400.gif" class='me'>
-  </a>
-</div> 
+<banner>
+</banner>
 <div class="display">
  <div  ng-controller="MapController as geo">
-   <div id ="clear-tweet" ng-click="flush()"><h3><a href="javascript:void(0)">Clear<br>Map<a/></h3></div>
+   <map>
+   </map>
    <div id="map-canvas"></div>
-   <div id="profile" ng-style="{'background':'transparent url(' + featuredTweet.background_image + ')'}" ng-if="featuredTweet" >
-     <img class="profile-pic" ng-src="{{featuredTweet.profile_image.replace('_normal', '')}}" ng-show="featuredTweet" />
-     <a id= "tweeter-page" href="{{'https://twitter.com/' + featuredTweet.user}}"><h3 class="screenname">{{featuredTweet.user}}</h3></a>
-     <div class="tweet"><p>{{featuredTweet.text}}</p></div>
-   </div>
   <profile>
   </profile>
   <div id="list" ng-if="featuredTweet">

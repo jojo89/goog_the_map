@@ -1,3 +1,8 @@
-  <div id="profile" ng-if="!featuredTweet" >
-    <img class="profile-pic2" ng-src="{{noTweetImage}}" ng-show="noTweetImage" />
-  </div>
+   <div id="profile" ng-style="{'background':'transparent url(' + featuredTweet.background_image + ')'}" ng-if="featuredTweet" >
+     <img class="profile-pic" ng-src="{{featuredTweet.profile_image.replace('_normal', '')}}" ng-show="featuredTweet" />
+     <a id= "tweeter-page" href="{{'https://twitter.com/' + featuredTweet.user}}"><h3 class="screenname">{{featuredTweet.user}}</h3></a>
+     <div class="tweet"><p>{{featuredTweet.text}}</p></div>
+   </div>
+    <div id="profile" ng-if="!featuredTweet" >
+      <img class="profile-pic2" ng-src="{{noTweetImage}}" ng-show="noTweetImage" />
+    </div>

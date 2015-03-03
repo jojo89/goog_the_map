@@ -1,3 +1,7 @@
-<ol>
-    <li ng-class="{'highlight': tweet == featuredTweet}" ng-click="changedFeatured(tweet)" ng-repeat="tweet in tweets | limitTo: 10 " ><a href="javascript:void(0)">{{tweet.user}}- {{tweet.text.trunc(17) + "..." }} {{tweet.retweet_count }}</a></li>
-</ol>
+<div id="list" ng-if="featuredTweet">
+  <h1>Hottest Tweets</h1>
+  <ol>
+     <li ng-class="{'highlight': tweet == featuredTweet}" ng-click="changedFeatured(tweet)" ng-repeat="tweet in tweets | limitTo: 10 " ><a href="javascript:void(0)">{{tweet.user}}- {{tweet.text.trunc(17) + "..." }} {{tweet.retweet_count }}</a></li>
+  </ol>
+</div>
+<div id="list" ng-if="!featuredTweet"><h1 class="load">{{loading}}</h1></div>

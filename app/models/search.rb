@@ -24,6 +24,6 @@ class Search
         ).to_json
       end
     end
-    tweets.sort_by{|x| x[:retweet_count]}.reverse
+    tweets.compact.sort_by{ |x| x[:retweet_count] }.reverse
   end 
 end

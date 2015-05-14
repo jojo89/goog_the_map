@@ -94,6 +94,12 @@ app.controller('MapController', function($http, $scope, spotFactory, twitterSina
     templateUrl: 'partials/formage.erb'
   };
 })
+.directive('banner', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'partials/banner.erb'
+  };
+})
 .directive('map', function() {
   return {
     restrict: 'E',
